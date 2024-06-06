@@ -1,8 +1,12 @@
-### FastAPI Starter Kit
+<p align="center" width="100%">
+  <img src="images/fastapi.svg" alt="fastapi-logo" width="100">
+</p>
+
+# FastAPI Starter Kit
 
 **FastAPI Starter Kit** is a modular and flexible starting point for building web applications with FastAPI. This repository provides a robust base structure with various extensions and configurations to help you get started quickly and efficiently.
 
-#### Features
+## Features
 
 - **Base Structure**: A well-organized and scalable FastAPI project structure to kickstart your development.
 - **Multiple Variations**: Branches with different features and integrations, such as:
@@ -13,13 +17,15 @@
 - **Extensible**: Easily add and customize features as per your project requirements.
 - **Best Practices**: Follow industry best practices for code organization, security, and performance.
 
-#### Branches
+## Branches
 
-- **main**: The main branch with the base FastAPI structure.
-- **cron-jobs**: Includes configurations and examples for setting up cron jobs.
-- **prisma**: Integration with Prisma ORM for database management.
-- **sqlalchemy**: Set up SQLAlchemy for advanced ORM features.
-- **yolo-models**: Example implementations of YOLO models for object detection.
+| Branch Name                                                                         | Description                                                     |
+|-------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| [main](https://github.com/yourusername/fastapi-starter-kit/tree/main)               | The main branch with the base FastAPI structure.                |
+| [cron-jobs](https://github.com/yourusername/fastapi-starter-kit/tree/cron-jobs)     | Includes configurations and examples for setting up cron jobs.  |
+| [prisma](https://github.com/yourusername/fastapi-starter-kit/tree/prisma)           | Integration with Prisma ORM for database management.            |
+| [sqlalchemy](https://github.com/yourusername/fastapi-starter-kit/tree/sqlalchemy)   | Set up SQLAlchemy for advanced ORM features.                    |
+| [yolo-models](https://github.com/yourusername/fastapi-starter-kit/tree/yolo-models) | Example implementations of YOLO models for object detection.    |
 
 #### Contact
 
