@@ -17,11 +17,24 @@
 - **Extensible**: Easily add and customize features as per your project requirements.
 - **Best Practices**: Follow industry best practices for code organization, security, and performance.
 
+## Getting Started
+
+To get started with FastAPI Starter Kit, clone the repository using the following command:
+
+Example:
+```bash
+git clone -b <BRANCH_NAME> https://github.com/yourusername/fastapi-starter-kit.git
+```
+
+```bash
+git clone -b base https://github.com/yourusername/fastapi-starter-kit.git
+```
+
 ## Branches
 
 | Branch Name                                                                         | Description                                                     |
 |-------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| [main](https://github.com/yourusername/fastapi-starter-kit/tree/main)               | The main branch with the base FastAPI structure.                |
+| [base](https://github.com/yourusername/fastapi-starter-kit/tree/base)               | The base branch with the simplest base FastAPI structure.       |
 | [cron-jobs](https://github.com/yourusername/fastapi-starter-kit/tree/cron-jobs)     | Includes configurations and examples for setting up cron jobs.  |
 | [prisma](https://github.com/yourusername/fastapi-starter-kit/tree/prisma)           | Integration with Prisma ORM for database management.            |
 | [sqlalchemy](https://github.com/yourusername/fastapi-starter-kit/tree/sqlalchemy)   | Set up SQLAlchemy for advanced ORM features.                    |
