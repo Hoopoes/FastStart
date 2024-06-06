@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+
+# Temporary files
+**temp**
+
+# Environment file
+.env
+
+# Model files
+*.pt
+models/**/*.xml
+models/**/*.bin
+models/**/*.yaml
+models/*.onnx
+
+# Visual Studio Code
+.vscode/
+
+# Prisma migrations
+prisma/migrations/
