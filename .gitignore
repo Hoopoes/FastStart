@@ -4,6 +4,9 @@ __pycache__/
 # Temporary files
 **temp**
 
+# Poetry lock
+poetry.lock
+
 # Environment file
 .env
 

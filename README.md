@@ -23,11 +23,11 @@ To get started with FastAPI Starter Kit, clone the repository using the followin
 
 Example:
 ```bash
-git clone -b <BRANCH_NAME> https://github.com/yourusername/fastapi-starter-kit.git
+git clone -b <BRANCH_NAME> https://github.com/Hoopoes/fastapi-starter-kit.git
 ```
 
 ```bash
-git clone -b base https://github.com/yourusername/fastapi-starter-kit.git
+git clone -b base https://github.com/Hoopoes/fastapi-starter-kit.git
 ```
 
 ## Branches
