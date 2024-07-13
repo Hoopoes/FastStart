@@ -35,10 +35,10 @@ git clone -b base https://github.com/Hoopoes/fastapi-starter-kit.git
 | Branch Name                                                                    | Description                                                     |
 |--------------------------------------------------------------------------------|-----------------------------------------------------------------|
 | [base](https://github.com/Hoopoes/fastapi-starter-kit/tree/base)               | The base branch with the simplest base FastAPI structure.       |
-| [cron-jobs](https://github.com/Hoopoes/fastapi-starter-kit/tree/cron-jobs)     | Includes configurations and examples for setting up cron jobs.  |
-| [prisma](https://github.com/Hoopoes/fastapi-starter-kit/tree/prisma)           | Integration with Prisma ORM for database management.            |
-| [sqlalchemy](https://github.com/Hoopoes/fastapi-starter-kit/tree/sqlalchemy)   | Set up SQLAlchemy for advanced ORM features.                    |
-| [yolo-models](https://github.com/Hoopoes/fastapi-starter-kit/tree/yolo-models) | Example implementations of YOLO models for object detection.    |
+| [cron-jobs](https://github.com/Hoopoes/fastapi-starter-kit/)                   | Includes configurations and examples for setting up cron jobs.  |
+| [prisma](https://github.com/Hoopoes/fastapi-starter-kit/)                      | Integration with Prisma ORM for database management.            |
+| [sqlalchemy](https://github.com/Hoopoes/fastapi-starter-kit/)                  | Set up SQLAlchemy for advanced ORM features.                    |
+| [yolo-models](https://github.com/Hoopoes/fastapi-starter-kit/)                 | Example implementations of YOLO models for object detection.    |
 
 #### Contact
 
