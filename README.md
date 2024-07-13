@@ -7,7 +7,7 @@
 
 ## Features
 
-- **Base Structure**: A well-organized and scalable FastAPI project structure to kickstart your development.
+- [**Base Structure**](https://github.com/Hoopoes/fastapi-starter-kit/tree/base): A well-organized and scalable FastAPI project structure to kickstart your development.
 - **Multiple Variations**: Branches with different features and integrations, such as:
   - **Cron Jobs**: Set up and manage scheduled tasks with ease.
   - **Prisma ORM**: Integrate Prisma for efficient and type-safe database interactions.
