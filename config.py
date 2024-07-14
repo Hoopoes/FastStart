@@ -1,7 +1,9 @@
-from dotenv import load_dotenv
 from os import getenv
+from dotenv import load_dotenv
+
 
 load_dotenv()
+
 
 class Config:
     app_name = "<APP_NAME>"

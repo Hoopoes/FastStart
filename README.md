@@ -3,40 +3,91 @@
 </p>
 
 # FastAPI Base Project Structure
-This is a modular and flexible starting point for developing backend microservices with FastAPI.
 
-## Root Directory
+This repository's branch serves as a modular and flexible starting point for developing backend microservices with FastAPI.
+
+## Setup
+
+### Step 1: Clone Repo
+
+```bash
+git clone -b base https://github.com/Hoopoes/fastapi-starter-kit.git
+```
+
+### Step 2: Create Environment
+
+Create a virtual environment using conda, pyenv, or any other tool, or simply install dependencies in your main Python environment.
+
+- [**Conda**](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+- [**Pyenv**](https://github.com/pyenv/pyenv)
+
+### Step 3: Install Poetry
+
+First, install the Poetry package manager, which is similar to npm for Node.js.
+
+```bash
+pip install poetry
+```
+**For more guidance, visit the [Python Poetry Guide](https://python-poetry.org).**
+
+### Step 4: Install Project Dependencies
+
+To install all the packages listed in the `pyproject.toml` file, run:
+
+```bash
+poetry install
+```
+
+### Step 5: Generate Database Prisma Schema
+
+
+Generate the Prisma schema:
+
+```bash
+prisma generate
+```
+
+OR
+
+```bash
+poetry run prisma generate
+```
+
+**For more guidance, visit the [Prisma Client Python Guide](https://prisma-client-py.readthedocs.io/en/stable/).**
+
+### Step 6: Run `main.py`
+
+Run the main application:
+
+```bash
+python main.py
+```
+
+OR
+
+```bash
+poetry run python main.py
+```
+
+
+## Project Structure
 
 ```
 📦FastAPI
  ┣ 📂app
  ┃ ┣ 📂api
- ┃ ┃ ┗ 📜user.py
  ┃ ┣ 📂db
- ┃ ┃ ┣ 📜prisma_client.py
- ┃ ┃ ┗ 📜user_db.py
  ┃ ┣ 📂jobs
- ┃ ┃ ┗ 📜cron_job.py
  ┃ ┣ 📂middlewares
- ┃ ┃ ┗ 📜usage.py
  ┃ ┣ 📂models
- ┃ ┃ ┣ 📜torch_.pt
- ┃ ┃ ┗ 📜tf_.h5
  ┃ ┣ 📂responses
- ┃ ┃ ┗ 📜error.py
  ┃ ┣ 📂schemas
- ┃ ┃ ┗ 📜user_schema.py
  ┃ ┣ 📂services
- ┃ ┃ ┗ user_service.py
  ┃ ┣ 📂utils
- ┃ ┃ ┣ 📜custom_log.py
- ┃ ┃ ┗ 📜logger.py
  ┃ ┗ 📜server.py
  ┣ 📂docs
  ┣ 📂logs
  ┣ 📂prisma
- ┃ ┣ 📜partial_types.py
- ┃ ┗ 📜schema.prisma
  ┣ 📂tests
  ┣ 📜.env
  ┣ 📜.env.example
@@ -45,11 +96,10 @@ This is a modular and flexible starting point for developing backend microservic
  ┣ 📜config.py
  ┣ 📜main.py
  ┣ 📜poetry.lock
- ┣ 📜pyproject.toml
- ┗ 📜README.md
+ ┗ 📜pyproject.toml
 ```
 
-## Explanation
+### Explanation
 
 - **Root Directory**: Contains project-wide configuration files and entry points.
 
