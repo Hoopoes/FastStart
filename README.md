@@ -2,6 +2,16 @@
   <img src="images/fastapi.svg" alt="fastapi-logo" width="100">
 </p>
 
+[![License](https://img.shields.io/github/license/Hoopoes/fastapi-starter-kit?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/fastapi-starter-kit/blob/main/LICENSE)
+[![Stars](https://img.shields.io/github/stars/Hoopoes/fastapi-starter-kit?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/fastapi-starter-kit/stargazers)
+[![Forks](https://img.shields.io/github/forks/Hoopoes/fastapi-starter-kit?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/fastapi-starter-kit/network/members)
+[![Issues](https://img.shields.io/github/issues/Hoopoes/fastapi-starter-kit?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/fastapi-starter-kit/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/Hoopoes/fastapi-starter-kit?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/fastapi-starter-kit/pulls)
+[![Contributors](https://img.shields.io/github/contributors/Hoopoes/fastapi-starter-kit?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/fastapi-starter-kit/graphs/contributors)
+
+
+
+
 # FastAPI Starter Kit
 **FastAPI Starter Kit** is a modular and flexible starting point for building backend microservices with FastAPI. This repository provides a robust base structure with various extensions and configurations to help you get started quickly and efficiently.
 
