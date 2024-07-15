@@ -51,7 +51,12 @@ git clone -b base https://github.com/Hoopoes/fastapi-starter-kit.git
 | [sqlalchemy](https://github.com/Hoopoes/fastapi-starter-kit/)    | Set up SQLAlchemy for advanced ORM features.                   |
 | [yolo-models](https://github.com/Hoopoes/fastapi-starter-kit/)   | Example implementations of YOLO models for object detection.   |
 
-#### Contact
+<!--## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Hoopoes/fastapi-starter-kit&type=Timeline)](https://star-history.com/#Hoopoes/fastapi-starter-kit&Timeline)
+-->
+
+## Contact
 
 For any questions or feedback, please reach out to 
 - Muhammad Umar Anzar - omer.anzar2@gmail.com
