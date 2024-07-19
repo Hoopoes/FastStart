@@ -110,16 +110,13 @@ poetry run python main.py
   - **app**: Main application directory.
     - **api**: Route handlers.
     - **db**: Database setup and operations.
-    - **jobs**: Background tasks.
-      - Includes jobs like cron jobs or S3 bucket tasks.
+    - **jobs**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middlewares**: Custom request/response handling.
     - **models**: Machine Learning models.
     - **responses**: Custom response handlers.
-    - **schemas**: Data validation schemas.
-      - `pydantic`
+    - **schemas**: Data validation schemas (using `pydantic`).
     - **services**: Business logic.
-    - **utils**: Utility functions.
-      - Custom logger
+    - **utils**: Utility functions, such as a custom logger.
     - `server.py`: Configures FastAPI server.
 
   - **docs**: Project documentation.
@@ -136,8 +133,7 @@ poetry run python main.py
 
   - **.env.example**: Example environment configuration file that is not ignored by Git.
 
-  - **config.py**: Project configurations.
-    - General project configurations, such as loading environment keys.
+  - **config.py**: Project configurations, such as loading environment keys.
 
   - **main.py**: Application entry point.
 
