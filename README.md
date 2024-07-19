@@ -6,64 +6,68 @@
 
 This repository's branch serves as a modular and flexible starting point for developing backend microservices with FastAPI.
 
+## Prerequisites
+
+Before setting up this project, ensure you have a basic understanding of the following tools:
+
+- **[Poetry](https://python-poetry.org)**: Dependency management tool (like npm for Node.js).
+
+- **[Pyenv](https://github.com/pyenv/pyenv)**: Manages multiple Python versions. For windows [pyenv-win](https://github.com/pyenv-win/pyenv-win).
+
+- **[Prisma](https://prisma-client-py.readthedocs.io/en/stable/)**: Object-Relational Mapper (ORM) for databases.
+
+
 ## Setup
 
-### Step 1: Clone Repo
+1. Clone the Repository
 
 ```bash
 git clone -b base https://github.com/Hoopoes/fastapi-starter-kit.git
 ```
 
-### Step 2: Create Environment
+2. Create a Virtual Environment (Optional)
 
-Create a virtual environment using conda, pyenv, or any other tool, or simply install dependencies in your main Python environment.
+Set up a Python virtual environment to manage your project’s dependencies independently. You can use a tool like pyenv or conda for this purpose
 
-- [**Conda**](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
-- [**Pyenv**](https://github.com/pyenv/pyenv)
-
-### Step 3: Install Poetry
-
-First, install the Poetry package manager, which is similar to npm for Node.js.
+3. Install Poetry
 
 ```bash
 pip install poetry
 ```
-**For more guidance, visit the [Python Poetry Guide](https://python-poetry.org).**
 
-### Step 4: Install Project Dependencies
+4. Install Project Dependencies
 
-To install all the packages listed in the `pyproject.toml` file, run:
+Install project's dependencies listed in the `pyproject.toml`.
 
 ```bash
 poetry install
 ```
 
-### Step 5: Generate Database Prisma Schema
+5. Generate Database Prisma Schema
 
-
-Generate the Prisma schema:
+Generate the Prisma schema required for your project.
 
 ```bash
-prisma generate
+> poetry shell
+> prisma generate
 ```
 
-OR
+Alternatively, you can use Poetry to run Prisma commands:
 
 ```bash
 poetry run prisma generate
 ```
 
-**For more guidance, visit the [Prisma Client Python Guide](https://prisma-client-py.readthedocs.io/en/stable/).**
-
-### Step 6: Run `main.py`
+1. Run `main.py`
 
 Run the main application:
 
 ```bash
-python main.py
+> poetry shell
+> python main.py
 ```
 
-OR
+Or, if you prefer to use Poetry:
 
 ```bash
 poetry run python main.py
@@ -84,73 +88,57 @@ poetry run python main.py
  ┃ ┣ 📂schemas
  ┃ ┣ 📂services
  ┃ ┣ 📂utils
- ┃ ┗ 📜server.py
+ ┃ ┗ 🐍server.py
  ┣ 📂docs
  ┣ 📂logs
  ┣ 📂prisma
  ┣ 📂tests
- ┣ 📜.env
- ┣ 📜.env.example
+ ┣ 💾.env
+ ┣ 💾.env.example
  ┣ 📜.gitattributes
  ┣ 📜.gitignore
- ┣ 📜config.py
- ┣ 📜main.py
- ┣ 📜poetry.lock
- ┗ 📜pyproject.toml
+ ┣ 🐍config.py
+ ┣ 🐍main.py
+ ┣ ⚙️poetry.lock
+ ┗ ⚙️pyproject.toml
 ```
 
 ### Explanation
 
-- **Root Directory**: Contains project-wide configuration files and entry points.
-
-  - **app**: Main application directory containing various modules and services.
-
-    - **api**: Contains route handlers.
-      - `user.py`: Defines API endpoints and their functions.
-    
-    - **db**: Database-related files.
-      - `prisma_client.py`: Setup for Prisma client to interact with the database.
-      - `user_db.py`: Database operations related to the user.
-    
-    - **jobs**: Scheduled jobs and background tasks.
+- **Root Directory**: Configuration files and entry points.
+  
+  - **app**: Main application directory.
+    - **api**: Route handlers.
+    - **db**: Database setup and operations.
+    - **jobs**: Background tasks.
       - Includes jobs like cron jobs or S3 bucket tasks.
-
-    - **middlewares**: Custom middleware for request and response handling.
-      - `usage.py`: Middleware to log and manage request usage statistics.
-    
+    - **middlewares**: Custom request/response handling.
     - **models**: Machine Learning models.
-      - `torch_.pt`: PyTorch model file.
-      - `tf_.h5`: TensorFlow model file.
-    
-    - **responses**: Custom response handlers and structures.
-      - `error.py`: Custom error responses.
-    
-    - **schemas**: Pydantic schemas for data validation and serialization.
-      - `user_schema.py`: User-related schemas.
-    
-    - **services**: Business logic and service functions.
-      - `user_service.py`: Contains complex functions used in API calls.
-    
-    - **utils**: Utility functions and helper modules.
-      - `custom_log.py`: Custom logging setup.
-      - `logger.py`: General logging functions.
-    
-    - `server.py`: Initializes and configures the FastAPI server.
+    - **responses**: Custom response handlers.
+    - **schemas**: Data validation schemas.
+      - `pydantic`
+    - **services**: Business logic.
+    - **utils**: Utility functions.
+      - Custom logger
+    - `server.py`: Configures FastAPI server.
 
-  - **docs**: Project documentation files.
+  - **docs**: Project documentation.
 
-  - **logs**: Daily logs files.
+  - **logs**: Log files.
 
-  - **prisma**: Prisma ORM related files.
+  - **prisma**: Prisma ORM files.
     - `partial_types.py`: Prisma partial types definitions.
     - `schema.prisma`: Prisma schema definitions.
 
-  - **tests**: Unit and integration test files.
+  - **tests**: Unit and integration tests.
 
-  - `.env`: Environment configuration file.
-  - `.env.example`: Example environment configuration file that is not ignored by Git.
-  - `.gitattributes`, `.gitignore`: Git configuration files to manage attributes and ignored files.
-  - `config.py`: General project configurations, such as loading environment keys.
-  - `main.py`: Entry point for the application.
-  - `poetry.lock`, `pyproject.toml`: Dependency management files used by Poetry.
-  - `README.md`: Documentation providing an overview and instructions for the project.
+  - **.env**: Secret Environment configuration that is ignored by Git.
+
+  - **.env.example**: Example environment configuration file that is not ignored by Git.
+
+  - **config.py**: Project configurations.
+    - General project configurations, such as loading environment keys.
+
+  - **main.py**: Application entry point.
+
+  - **poetry.lock, pyproject.toml**: Dependency management.

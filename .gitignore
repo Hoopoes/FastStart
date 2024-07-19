@@ -1,6 +1,9 @@
 # Python cache
 __pycache__/
 
+# Poetry
+.venv
+
 # log files
 logs/*.log
 
