@@ -5,9 +5,13 @@ generator client {
   partial_type_generator = "prisma/partial_types.py"
 }
 
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+
+  // provider = "postgresql" |  "mongodb" | "sqlite"
+  //   url      = env("DATABASE_URL") | "file:dev.db"
 }
 
 enum UserType {

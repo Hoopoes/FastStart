@@ -13,7 +13,7 @@ priority = "primary"
 [tool.poetry.dependencies]
 python = ">=3.11,<3.12"
 uvicorn = {extras = ["standard"], version = "^0.29.0"}
-fastapi = "^0.111.0"
+fastapi = "^0.111.1"
 
 
 [tool.poetry.group.db.dependencies]
