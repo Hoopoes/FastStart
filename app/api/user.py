@@ -2,8 +2,8 @@ import app.db.user_db as user_db
 from app.utils.logger import log
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter, Depends, Query
-from app.schemas.user_schema import CreateUser, UserBase
-from app.responses.error import UserIDAlreadyExist, UserNotExist
+from app.schema.user_schema import CreateUser, UserBase
+from app.response.error import UserIDAlreadyExist, UserNotExist
 
 
 tag: str = "User"

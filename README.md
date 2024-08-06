@@ -81,18 +81,18 @@ poetry run python main.py
  ┣ 📂app
  ┃ ┣ 📂api
  ┃ ┣ 📂db
- ┃ ┣ 📂jobs
- ┃ ┣ 📂middlewares
+ ┃ ┣ 📂job
+ ┃ ┣ 📂middleware
  ┃ ┣ 📂models
- ┃ ┣ 📂responses
- ┃ ┣ 📂schemas
- ┃ ┣ 📂services
+ ┃ ┣ 📂response
+ ┃ ┣ 📂schema
+ ┃ ┣ 📂service
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
  ┣ 📂docs
  ┣ 📂logs
  ┣ 📂prisma
- ┣ 📂tests
+ ┣ 📂test
  ┣ 💾.env
  ┣ 💾.env.example
  ┣ 📜.gitattributes
@@ -110,12 +110,12 @@ poetry run python main.py
   - **app**: Main application directory.
     - **api**: Route handlers.
     - **db**: Database setup and operations.
-    - **jobs**: Background tasks, such as cron jobs or S3 bucket tasks.
-    - **middlewares**: Custom request/response handling.
+    - **job**: Background tasks, such as cron jobs or S3 bucket tasks.
+    - **middleware**: Custom request/response handling.
     - **models**: Machine Learning models.
-    - **responses**: Custom response handlers.
-    - **schemas**: Data validation schemas (using `pydantic`).
-    - **services**: Business logic.
+    - **response**: Custom response handlers.
+    - **schema**: Data validation schemas (using `pydantic`).
+    - **service**: Business logic.
     - **utils**: Utility functions, such as a custom logger.
     - `server.py`: Configures FastAPI server.
 
@@ -127,7 +127,7 @@ poetry run python main.py
     - `partial_types.py`: Prisma partial types definitions.
     - `schema.prisma`: Prisma schema definitions.
 
-  - **tests**: Unit and integration tests.
+  - **test**: Unit and integration tests.
 
   - **.env**: Secret Environment configuration that is ignored by Git.
 

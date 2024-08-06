@@ -3,11 +3,11 @@ from config import Config
 from app.utils.logger import log
 from fastapi import FastAPI, Request
 from app.api.user import user_router
-from app.jobs.cron_job import cron_job
+from app.job.cron_job import cron_job
 from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from app.middlewares.usage import usage_middleware
+from app.middleware.usage import usage_middleware
 from app.db.prisma_client import connect_prisma, disconnect_prisma
 
 
