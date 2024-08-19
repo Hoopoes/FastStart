@@ -8,7 +8,6 @@ from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from app.middleware.usage import usage_middleware
-from app.db.prisma_client import connect_prisma, disconnect_prisma
 
 
 def init_routers(app_: FastAPI) -> None:
@@ -29,10 +28,8 @@ def make_middleware() -> list[Middleware]:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await connect_prisma()
     await cron_job()
     yield
-    await disconnect_prisma()
 
 
 def create_app() -> FastAPI:

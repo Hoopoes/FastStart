@@ -2,10 +2,6 @@ import argparse
 
 def main(args):
     import uvicorn
-    import subprocess
-    
-    if args.prisma:
-        subprocess.run(["prisma", "generate"])
     
     uvicorn.run(
         app="app.server:app",
@@ -23,6 +19,5 @@ if __name__ == "__main__":
     parser.add_argument("--certfile", type=str, help="Path to SSL certificate file")
     parser.add_argument("--port", type=int, default=8000, help="Default port is 8000")
     parser.add_argument("--debug", action="store_true", help="Enable debug mode")
-    parser.add_argument("--prisma", action="store_true", help="Generate prisma schema")
     args = parser.parse_args()
     main(args)

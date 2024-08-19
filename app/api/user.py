@@ -1,8 +1,7 @@
-import app.db.user_db as user_db
 from app.utils.logger import log
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter, Depends, Query
-from app.schema.user_schema import CreateUser, UserBase
+from app.schema.user_schema import CreateUser, UserBase, UserType
 from app.response.error import UserIDAlreadyExist, UserNotExist
 
 
@@ -14,7 +13,7 @@ user_router: APIRouter = APIRouter(tags=[tag])
 async def user_create(req: CreateUser = Depends()) -> JSONResponse:
 
     try:
-        await user_db.create(user_id=req.user_id, name=req.name, user_type=req.user_type)
+        log.info(f"Create user {req.name}")
     except ValueError:
         raise UserIDAlreadyExist()
 
@@ -25,7 +24,10 @@ async def user_create(req: CreateUser = Depends()) -> JSONResponse:
 @user_router.delete('/api/db/user/delete')
 async def user_delete(user_id: str = Query(..., max_length=10, description="user id assignment")) -> JSONResponse:
 
-    user = await user_db.delete(user_id=user_id)
+    user = {
+            "name": "umar",
+            "user_type": UserType.BUYER
+    }
     if user is None:
         raise UserNotExist()
     
@@ -36,6 +38,15 @@ async def user_delete(user_id: str = Query(..., max_length=10, description="user
 @user_router.get('/api/db/user/fetch', response_model=list[UserBase])
 async def users_fetch() -> list[UserBase]:
     
-    users = await user_db.fetch_all()
+    users = [
+        {
+            "name": "umar",
+            "user_type": UserType.BUYER
+        },
+        {
+            "name": "mubbashir",
+            "user_type": UserType.SELLER
+        }
+    ]
 
-    return [UserBase.model_validate(user.model_dump()) for user in users]
+    return [UserBase.model_validate(user) for user in users]
