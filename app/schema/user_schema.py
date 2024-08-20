@@ -1,4 +1,4 @@
-from prisma.enums import UserType
+from app.db.user_db import UserType
 from pydantic import BaseModel, Field
 
 class UserBase(BaseModel):

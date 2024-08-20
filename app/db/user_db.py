@@ -1,8 +1,13 @@
 import prisma
+from enum import StrEnum
 from typing import Optional
 from prisma.models import User
 from prisma.partials import UserSubFields
 from app.db.prisma_client import prisma_client
+
+class UserType(StrEnum):
+    BUYER = "BUYER"
+    SELLER = "SELLER"
 
 async def create(user_id: str, name: str, user_type: str):
     try:

@@ -48,8 +48,8 @@ poetry install
 Generate the Prisma schema required for your project.
 
 ```bash
-> poetry shell
-> prisma generate
+poetry shell
+prisma generate
 ```
 
 Alternatively, you can use Poetry to run Prisma commands:
@@ -58,13 +58,43 @@ Alternatively, you can use Poetry to run Prisma commands:
 poetry run prisma generate
 ```
 
-1. Run `main.py`
+6. Migrate Schema into SQL Database (Not for MongoDB)
+
+This step is necessary when you first set up the database or when the schema has changed.
+
+Run the following command to apply the schema migration to your SQL database:
+
+```bash
+prisma migrate dev --name <migration_name>
+```
+
+For the initial migration, you can use:
+
+```bash
+poetry shell
+prisma migrate dev --name init
+```
+
+- If you need to alter the schema and migrate again, use:
+
+```bash
+poetry shell
+prisma migrate dev --name <new_migration_name>
+```
+
+Alternatively, you can use Poetry to run Prisma commands:
+
+```bash
+poetry run prisma migrate dev --name <new_migration_name>
+```
+
+7. Run `main.py`
 
 Run the main application:
 
 ```bash
-> poetry shell
-> python main.py
+poetry shell
+python main.py
 ```
 
 Or, if you prefer to use Poetry:

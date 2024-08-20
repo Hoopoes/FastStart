@@ -6,24 +6,63 @@ generator client {
 }
 
 
+//////////////////////////// SQLITE ////////////////////////////
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-
-  // provider = "postgresql" |  "mongodb" | "sqlite"
-  //   url      = env("DATABASE_URL") | "file:dev.db"
-}
-
-enum UserType {
-  BUYER
-  SELLER
+  provider = "sqlite"
+  url      = "file:dev.db"
 }
 
 model User {
   id        Int      @id @default(autoincrement())
-  user_id   String   @unique @db.VarChar(10)
-  name      String?  @db.VarChar(30)
-  user_type UserType
+  user_id   String   @unique 
+  name      String?
+  user_type String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+
+//////////////////////////// POSTGRESQL ////////////////////////////
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// enum UserType {
+//   BUYER
+//   SELLER
+// }
+
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   user_id   String   @unique @db.VarChar(10)
+//   name      String?  @db.VarChar(30)
+//   user_type UserType
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+
+
+
+//////////////////////////// MONGODB ////////////////////////////
+
+// datasource db {
+//   provider = "mongodb"
+//   url      = env("DATABASE_URL")
+// }
+
+// enum UserType {
+//   BUYER
+//   SELLER
+// }
+
+// model User {
+//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+//   user_id   String   @unique 
+//   name      String?  
+//   user_type UserType
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
