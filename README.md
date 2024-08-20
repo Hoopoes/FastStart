@@ -14,8 +14,6 @@ Before setting up this project, ensure you have a basic understanding of the fol
 
 - **[Pyenv](https://github.com/pyenv/pyenv)**: Manages multiple Python versions. For windows [pyenv-win](https://github.com/pyenv-win/pyenv-win).
 
-- **[Prisma](https://prisma-client-py.readthedocs.io/en/stable/)**: Object-Relational Mapper (ORM) for databases.
-
 
 ## Setup
 
@@ -43,22 +41,7 @@ Install project's dependencies listed in the `pyproject.toml`.
 poetry install
 ```
 
-5. Generate Database Prisma Schema
-
-Generate the Prisma schema required for your project.
-
-```bash
-> poetry shell
-> prisma generate
-```
-
-Alternatively, you can use Poetry to run Prisma commands:
-
-```bash
-poetry run prisma generate
-```
-
-1. Run `main.py`
+5. Run `main.py`
 
 Run the main application:
 
@@ -80,7 +63,6 @@ poetry run python main.py
 📦FastAPI
  ┣ 📂app
  ┃ ┣ 📂api
- ┃ ┣ 📂db
  ┃ ┣ 📂job
  ┃ ┣ 📂middleware
  ┃ ┣ 📂models
@@ -91,7 +73,6 @@ poetry run python main.py
  ┃ ┗ 🐍server.py
  ┣ 📂docs
  ┣ 📂logs
- ┣ 📂prisma
  ┣ 📂test
  ┣ 💾.env
  ┣ 💾.env.example
@@ -109,7 +90,6 @@ poetry run python main.py
   
   - **app**: Main application directory.
     - **api**: Route handlers.
-    - **db**: Database setup and operations.
     - **job**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middleware**: Custom request/response handling.
     - **models**: Machine Learning models.
@@ -122,10 +102,6 @@ poetry run python main.py
   - **docs**: Project documentation.
 
   - **logs**: Log files.
-
-  - **prisma**: Prisma ORM files.
-    - `partial_types.py`: Prisma partial types definitions.
-    - `schema.prisma`: Prisma schema definitions.
 
   - **test**: Unit and integration tests.
 
