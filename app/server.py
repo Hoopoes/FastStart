@@ -1,13 +1,17 @@
 import time
 from config import Config
 from app.utils.logger import log
-from fastapi import FastAPI, Request
 from app.api.user import user_router
 from app.job.cron_job import cron_job
 from fastapi.middleware import Middleware
+from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
-from fastapi.middleware.cors import CORSMiddleware
+from app.schema.base_schema import BaseResponse
 from app.middleware.usage import usage_middleware
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
+
 
 
 def init_routers(app_: FastAPI) -> None:
@@ -45,6 +49,39 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
+
+
+# Define a custom error handler for validation errors
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    # Customize the response structure to be a single string
+    response_content = BaseResponse(
+        resp_code=422,
+        response="\n".join(
+            [
+                f"Field '{'.'.join(map(str, error['loc']))}' - {error['msg']}"
+                for error in exc.errors()
+            ]
+        )
+    )
+    return JSONResponse(
+        status_code=422,
+        content=response_content.model_dump()
+    )
+
+
+# Custom handler for HTTPException
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    # Format the response structure
+    response_content = BaseResponse(
+        resp_code=exc.detail.resp_code if isinstance(exc.detail, BaseResponse) else str(exc.status_code),
+        response=exc.detail.response if isinstance(exc.detail, BaseResponse) else str(exc.detail)
+    )
+    return JSONResponse(
+        status_code=exc.status_code,
+        content=response_content.model_dump()
+    )
 
 
 @app.middleware("http")

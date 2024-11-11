@@ -16,10 +16,6 @@ uvicorn = {extras = ["standard"], version = "^0.29.0"}
 fastapi = "^0.111.1"
 
 
-[tool.poetry.group.db.dependencies]
-prisma = "^0.13.1"
-
-
 [tool.poetry.group.cronJob.dependencies]
 fastapi-utilities = "^0.2.0"
 

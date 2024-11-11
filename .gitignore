@@ -8,7 +8,7 @@ __pycache__/
 logs/*.log
 
 # Temporary files
-**temp**
+temp
 
 # Environment file
 .env
