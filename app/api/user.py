@@ -1,8 +1,8 @@
 import app.db.user_db as user_db
 from app.utils.logger import log
 from app.schema.base_schema import BaseResponse
+from fastapi import APIRouter, HTTPException, Query
 from app.schema.user_schema import CreateUser, Users
-from fastapi import APIRouter, Depends, HTTPException, Query
 from app.res.error import InternalServerError, UserIDAlreadyExist, UserNotExist
 
 
@@ -11,7 +11,7 @@ user_router: APIRouter = APIRouter(tags=[tag])
 
 
 @user_router.post('/api/db/user/create')
-async def user_create(req: CreateUser = Depends()) -> BaseResponse:
+async def user_create(req: CreateUser) -> BaseResponse:
     try:
 
         try:
