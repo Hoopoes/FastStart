@@ -46,8 +46,8 @@ poetry install
 Run the main application:
 
 ```bash
-> poetry shell
-> python main.py
+poetry shell
+python main.py
 ```
 
 Or, if you prefer to use Poetry:
