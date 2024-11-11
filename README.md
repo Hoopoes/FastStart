@@ -4,58 +4,119 @@
 
 
 
+# FastStart Ultralytics Yolo Implementation Example
+This repository's branch demonstrates how to set up a  Ultralytics YOLO for object detection in FastAPI.
+
+## Prerequisites
+
+Before setting up this project, ensure you have a basic understanding of the following tools:
+
+- **[Poetry](https://python-poetry.org)**: Dependency management tool (like npm for Node.js).
+
+- **[Pyenv](https://github.com/pyenv/pyenv)**: Manages multiple Python versions. For windows [pyenv-win](https://github.com/pyenv-win/pyenv-win).
 
 
-# FastStart: A FastAPI Starter Kit
-[![License](https://img.shields.io/github/license/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/blob/main/LICENSE)
-[![Stars](https://img.shields.io/github/stars/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/stargazers)
-[![Forks](https://img.shields.io/github/forks/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/network/members)
-[![Issues](https://img.shields.io/github/issues/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/pulls)
-[![Contributors](https://img.shields.io/github/contributors/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/graphs/contributors)
-
-
-**FastStart** is a modular and flexible starting point for building backend microservices with FastAPI. This repository provides a robust base structure with various extensions and configurations to help you get started quickly and efficiently.
-
-## Features
-
-- [**Base Structure**](https://github.com/Hoopoes/FastStart/tree/base): A well-organized and scalable FastAPI project structure to kickstart your development.
-- [**Prisma-ORM Base Structure**](https://github.com/Hoopoes/FastStart/tree/prisma-or): A base structure with Prisma ORM integrated.
-- **Multiple Variations**: Branches with various features and integrations, such as:
-  - **YOLO Models**: Implement YOLO (You Only Look Once) models for object detection and computer vision applications.
-- **Extensible**: Easily add and customize features as per your project requirements.
-- **Best Practices**: Follow industry best practices for code organization, security, and performance.
-
-## Getting Started
-
-To get started with the FastAPI Starter Kit, clone the repository using the following command:
-
-Example:
-```bash
-git clone -b <BRANCH_NAME> https://github.com/Hoopoes/FastStart.git
-```
+## Setup
+1. Initialize Poetry in Your Project:
 
 ```bash
-git clone -b base https://github.com/Hoopoes/FastStart.git
+poetry init
 ```
 
-## Branches
+2. Configure Poetry for CPU or GPU Support:
 
-| Branch Name                                                        | Description                                                                    |
-|--------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| [base](https://github.com/Hoopoes/FastStart/tree/base)             | The base branch with the simplest base FastAPI structure.                      |
-| [prisma-orm](https://github.com/Hoopoes/FastStart/tree/prisma-orm) | This branch has prisma orm implemented in the simplest base FastAPI structure. |
-| [Ultralytics Yolo](https://github.com/Hoopoes/FastStart/)          | Example implementations of YOLO models for object detection. (Coming Soon)     |
+Based on your hardware, you can set up a pyproject.toml file for either CPU or CUDA-enabled GPU (NVIDIA) support.
 
-<!--## 🌟 Star History
+### CPU Configuration `(pyproject.toml)`
+This configuration installs a version of PyTorch optimized for CPU usage.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Hoopoes/FastStart&type=Timeline)](https://star-history.com/#Hoopoes/FastStart&Timeline)
--->
 
-## Contact
+```toml
+[tool.poetry]
+name = "project-name"
+version = "0.1.0"
+description = ""
+authors = ["author-name <author-email>"]
+readme = "README.md"
+package-mode = false
 
-For any questions or feedback, please reach out to:
-- Muhammad Umar Anzar - omer.anzar2@gmail.com
-- Mubashir Ahmed Siddiqui - mubashirsidiki@gmail.com
 
-Or open an issue on GitHub.
+[[tool.poetry.source]]
+name = "pytorch-src"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
+
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+
+[tool.poetry.dependencies]
+python = "^3.11.0"
+torch = {version = "^2.2.0+cpu", source = "pytorch-src"}
+torchvision = {version = "^0.17.0+cpu", source = "pytorch-src"}
+ultralytics = "8.0.196"
+numpy = "1.26.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+```
+
+### GPU Configuration `(pyproject.toml)`
+This configuration is optimized for NVIDIA GPUs with CUDA support (CUDA 12.1).
+
+
+```toml
+[tool.poetry]
+name = "project-name"
+version = "0.1.0"
+description = ""
+authors = ["author-name <author-email>"]
+readme = "README.md"
+package-mode = false
+
+
+[[tool.poetry.source]]
+name = "pytorch-src"
+url = "https://download.pytorch.org/whl/cu121"
+priority = "explicit"
+
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+
+[tool.poetry.dependencies]
+python = "^3.11.0"
+torch = {version = "^2.3.1+cu121", source = "pytorch-src"}
+torchvision = {version = "^0.18.0+cu121", source = "pytorch-src"}
+ultralytics = "8.2.82"
+numpy = "1.26.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+```
+
+## Raw Inference (DUMMY NOT YET IMPLEMENTED)
+
+```py
+import numpy as np
+from fastapi import FastAPI, File, UploadFile
+from ultralytics import YOLO
+
+
+app = FastAPI()
+model = YOLO("yolov8n.pt")  # Load a pretrained YOLO model
+
+@app.post("/predict/")
+async def predict(file: UploadFile = File(...)):
+    ...
+    ...
+    return {"detections": detections}
+```
