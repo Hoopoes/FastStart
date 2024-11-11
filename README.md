@@ -88,7 +88,16 @@ Alternatively, you can use Poetry to run Prisma commands:
 poetry run prisma migrate dev --name <new_migration_name>
 ```
 
-7. Run `main.py`
+7. Apply Existing Migrations (if they have already been created)
+
+If you already have migrations and just need to apply them (without generating new ones), you can use:
+```bash
+prisma migrate deploy
+```
+This will apply any pending migrations to your SQL database.
+
+
+8. Run `main.py`
 
 Run the main application:
 

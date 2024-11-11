@@ -8,7 +8,7 @@ __pycache__/
 logs/*.log
 
 # Temporary files
-**temp**
+temp
 
 # Sqlite db
 prisma/*.db

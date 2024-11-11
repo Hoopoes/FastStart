@@ -1,9 +1,9 @@
 import app.db.user_db as user_db
 from app.utils.logger import log
-from fastapi.responses import JSONResponse
-from fastapi import APIRouter, Depends, Query
-from app.schema.user_schema import CreateUser, UserBase
-from app.response.error import UserIDAlreadyExist, UserNotExist
+from app.schema.base_schema import BaseResponse
+from app.schema.user_schema import CreateUser, Users
+from fastapi import APIRouter, Depends, HTTPException, Query
+from app.res.error import InternalServerError, UserIDAlreadyExist, UserNotExist
 
 
 tag: str = "User"
@@ -11,31 +11,56 @@ user_router: APIRouter = APIRouter(tags=[tag])
 
 
 @user_router.post('/api/db/user/create')
-async def user_create(req: CreateUser = Depends()) -> JSONResponse:
-
+async def user_create(req: CreateUser = Depends()) -> BaseResponse:
     try:
-        await user_db.create(user_id=req.user_id, name=req.name, user_type=req.user_type)
-    except ValueError:
-        raise UserIDAlreadyExist()
 
-    log.debug("User created")
-    return JSONResponse(content={"response": "User Successfully Created"}, status_code=200)
+        try:
+            await user_db.create(user_id=req.user_id, name=req.name, user_type=req.user_type)
+        except ValueError:
+            raise UserIDAlreadyExist()
+
+        log.debug("User created")
+        return BaseResponse(resp_code=200, response="User Successfully Created")
+    
+    except HTTPException as ex:
+        log.error(f"HTTP Exception: {ex.detail}")
+        raise ex
+    except Exception as ex:
+        log.error(f"Unexpected error occurred: {ex}", exc_info=True)
+        raise InternalServerError()
 
 
 @user_router.delete('/api/db/user/delete')
-async def user_delete(user_id: str = Query(..., max_length=10, description="user id assignment")) -> JSONResponse:
+async def user_delete(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponse:
+    try:
 
-    user = await user_db.delete(user_id=user_id)
-    if user is None:
-        raise UserNotExist()
+        user = await user_db.delete(user_id=user_id)
+
+        if user is None:
+            raise UserNotExist()
+        
+        log.debug("User deleted")
+
+        return BaseResponse(resp_code=200, response="User Successfully Deleted")
     
-    log.debug("User deleted")
-    return JSONResponse(content={"response": "User Successfully Deleted"}, status_code=200)
+    except HTTPException as ex:
+        log.error(f"HTTP Exception: {ex.detail}")
+        raise ex
+    except Exception as ex:
+        log.error(f"Unexpected error occurred: {ex}", exc_info=True)
+        raise InternalServerError()
 
 
-@user_router.get('/api/db/user/fetch', response_model=list[UserBase])
-async def users_fetch() -> list[UserBase]:
-    
-    users = await user_db.fetch_all()
+@user_router.get('/api/db/user/fetch')
+async def users_fetch() -> Users:
+    try:
+        users = await user_db.fetch_all()
 
-    return [UserBase.model_validate(user.model_dump()) for user in users]
+        return Users(resp_code=200, response="Success", users=users)
+
+    except HTTPException as ex:
+        log.error(f"HTTP Exception: {ex.detail}")
+        raise ex
+    except Exception as ex:
+        log.error(f"Unexpected error occurred: {ex}", exc_info=True)
+        raise InternalServerError()
