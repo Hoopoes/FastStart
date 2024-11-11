@@ -45,7 +45,7 @@ git clone -b base https://github.com/Hoopoes/FastStart.git
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | [base](https://github.com/Hoopoes/FastStart/tree/base)             | The base branch with the simplest base FastAPI structure.                      |
 | [prisma-orm](https://github.com/Hoopoes/FastStart/tree/prisma-orm) | This branch has prisma orm implemented in the simplest base FastAPI structure. |
-| [Ultralytics Yolo](https://github.com/Hoopoes/FastStart/)          | Example implementations of YOLO models for object detection. (Coming Soon)     |
+| [ultralytics-yolo](https://github.com/Hoopoes/FastStart/tree/ultralytics-yolo)          | Example implementations of YOLO models for object detection. (Coming Soon)     |
 
 <!--## 🌟 Star History
 
