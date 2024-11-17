@@ -2,7 +2,7 @@ import app.db.user_db as user_db
 from app.utils.logger import log
 from app.schema.base_schema import BaseResponse
 from fastapi import APIRouter, HTTPException, Query
-from app.schema.user_schema import CreateUser, Users
+from app.schema.user_schema import CreateUser, Users, UserBase
 from app.res.error import InternalServerError, UserIDAlreadyExist, UserNotExist
 
 
@@ -20,7 +20,7 @@ async def user_create(req: CreateUser) -> BaseResponse:
             raise UserIDAlreadyExist()
 
         log.debug("User created")
-        return BaseResponse(resp_code=200, response="User Successfully Created")
+        return BaseResponse(resp_code=200, responseDescription="User Successfully Created")
     
     except HTTPException as ex:
         log.error(f"HTTP Exception: {ex.detail}")
@@ -41,7 +41,7 @@ async def user_delete(user_id: str = Query(..., max_length=10, description="user
         
         log.debug("User deleted")
 
-        return BaseResponse(resp_code=200, response="User Successfully Deleted")
+        return BaseResponse(resp_code=200, responseDescription="User Successfully Deleted")
     
     except HTTPException as ex:
         log.error(f"HTTP Exception: {ex.detail}")
@@ -56,7 +56,7 @@ async def users_fetch() -> Users:
     try:
         users = await user_db.fetch_all()
 
-        return Users(resp_code=200, response="Success", users=users)
+        return Users(resp_code=200, responseDescription="Success", users=[UserBase.model_validate(user) for user in users])
 
     except HTTPException as ex:
         log.error(f"HTTP Exception: {ex.detail}")
