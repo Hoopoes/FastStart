@@ -1,6 +1,6 @@
 import os
 import logging
-from config import Config
+from config import CONFIG
 from logging.config import dictConfig
 
 
@@ -39,7 +39,7 @@ log_config = {
         },
     },
     "loggers": {
-        f"{Config.app_name}": {
+        f"{CONFIG.app_name}": {
             "handlers": ["default", "file"],
             "level": "DEBUG",  # Set your desired logging level here
         },
@@ -50,7 +50,7 @@ log_config = {
 dictConfig(log_config)
 
 # Define a logger
-log = logging.getLogger(f"{Config.app_name}")
+log = logging.getLogger(f"{CONFIG.app_name}")
 
 # Test logging
-log.info(f"{Config.app_name} logger initialized")
+log.info(f"{CONFIG.app_name} logger initialized")

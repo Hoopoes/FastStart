@@ -12,7 +12,7 @@ class ConfigClass(BaseModel):
     description: str
     api_key: Optional[str]
 
-Config = ConfigClass(
+CONFIG = ConfigClass(
     app_name = "<APP_NAME>",
     description = "<APP_DESCRIPTION>",
     api_key = getenv("API_KEY") if getenv("API_KEY") else None
