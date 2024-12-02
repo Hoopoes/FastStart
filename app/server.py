@@ -8,6 +8,7 @@ from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from app.middleware.usage import usage_middleware
 from fastapi.middleware.cors import CORSMiddleware
+from app.schema.base_schema import GLOBAL_RESPONSES
 from app.res.exception_handlers import register_error_handlers
 
 
@@ -41,6 +42,7 @@ def create_app() -> FastAPI:
         version="1.0.0",
         middleware=make_middleware(),
         lifespan=lifespan,
+        responses=GLOBAL_RESPONSES
     )
     init_routers(app_=app_)
     register_error_handlers(app=app_)
