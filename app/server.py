@@ -1,5 +1,5 @@
 import time
-from config import Config
+from config import CONFIG
 from app.utils.logger import log
 from fastapi import FastAPI, Request
 from app.api.user import user_router
@@ -39,8 +39,8 @@ async def lifespan(app: FastAPI):
 
 def create_app() -> FastAPI:
     app_ = FastAPI(
-        title=Config.app_name,
-        description=Config.description,
+        title=CONFIG.app_name,
+        description=CONFIG.description,
         version="1.0.0",
         middleware=make_middleware(),
         lifespan=lifespan,
