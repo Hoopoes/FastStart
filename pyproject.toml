@@ -17,7 +17,8 @@ fastapi = "^0.111.1"
 
 
 [tool.poetry.group.cronJob.dependencies]
-fastapi-utilities = "^0.2.0"
+typing-inspect = "^0.9.0"
+fastapi-utils = "^0.8.0"
 
 [build-system]
 requires = ["poetry-core"]
