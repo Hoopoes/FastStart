@@ -22,7 +22,7 @@
 - [**Base Structure**](https://github.com/Hoopoes/FastStart/tree/base): A well-organized and scalable FastAPI project structure to kickstart your development.
 - [**Prisma-ORM Base Structure**](https://github.com/Hoopoes/FastStart/tree/prisma-or): A base structure with Prisma ORM integrated.
 - **Multiple Variations**: Branches with various features and integrations, such as:
-  - **YOLO Models**: Implement YOLO (You Only Look Once) models for object detection and computer vision applications.
+  - [**YOLO Models**](https://github.com/Hoopoes/FastStart/tree/ultralytics-yolo): Implement YOLO (You Only Look Once) models for object detection and computer vision applications.
 - **Extensible**: Easily add and customize features as per your project requirements.
 - **Best Practices**: Follow industry best practices for code organization, security, and performance.
 
