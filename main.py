@@ -5,6 +5,7 @@ def main(args):
     import subprocess
     
     subprocess.run(["prisma", "generate"])
+    subprocess.run(["prisma", "migrate", "deploy"])
     
     uvicorn.run(
         app="app.server:app",

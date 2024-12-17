@@ -50,7 +50,7 @@ log_config = {
 dictConfig(log_config)
 
 # Define a logger
-log = logging.getLogger(f"{CONFIG.app_name}")
+LOG = logging.getLogger(f"{CONFIG.app_name}")
 
 # Test logging
-log.info(f"{CONFIG.app_name} logger initialized")
+LOG.info(f"{CONFIG.app_name} logger initialized")
