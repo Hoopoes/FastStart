@@ -1,4 +1,4 @@
-from app.utils.logger import log
+from app.utils.logger import LOG
 from fastapi.responses import JSONResponse
 from app.schema.base_schema import BaseResponse
 from fastapi import FastAPI, HTTPException, Request
@@ -46,5 +46,5 @@ def register_error_handlers(app: FastAPI):
     # Catch-all handler for unexpected errors
     @app.exception_handler(Exception)
     async def global_exception_handler(request: Request, exc: Exception):
-        log.error(f"Unexpected error occurred: {exc}")
+        LOG.error(f"Unexpected error occurred: {exc}")
         return JSONResponse(status_code=500, content=InternalServerError().detail.model_dump())
