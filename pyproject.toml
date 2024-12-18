@@ -7,7 +7,7 @@ readme = "README.md"
 package-mode = false
 
 [[tool.poetry.source]]
-name = "PyPI"
+name = "pypi"
 priority = "primary"
 
 [tool.poetry.dependencies]
