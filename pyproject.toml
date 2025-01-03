@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastapi-prisma-orm"
-version = "0.1.0"
+version = "1.0.0"
 description = "Base file structure of fast api"
 authors = ["Muhammad Umar Anzar <63141196+umar-anzar@users.noreply.github.com>"]
 readme = "README.md"

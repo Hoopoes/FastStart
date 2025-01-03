@@ -39,12 +39,12 @@ def create_app() -> FastAPI:
     app_ = FastAPI(
         title=CONFIG.app_name,
         description=CONFIG.description,
-        version="1.0.0",
+        version=CONFIG.version,
         middleware=make_middleware(),
         lifespan=lifespan,
         responses=GLOBAL_RESPONSES,
-        docs_url = "/docs",
-        redoc_url = "/redoc",
+        docs_url="/docs",
+        redoc_url="/redoc",
     )
     init_routers(app_=app_)
     register_error_handlers(app=app_)
