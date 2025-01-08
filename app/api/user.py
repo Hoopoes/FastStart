@@ -20,7 +20,7 @@ async def user_create(req: CreateUser) -> BaseResponse:
             raise UserIDAlreadyExist()
 
         LOG.debug("User created")
-        return BaseResponse(resp_code=200, responseDescription="User Successfully Created")
+        return BaseResponse(resp_code=200, response_description="User Successfully Created")
     
     except HTTPException as ex:
         LOG.error(f"HTTP Exception: {ex.detail}")
@@ -41,7 +41,7 @@ async def user_delete(user_id: str = Query(..., max_length=10, description="user
         
         LOG.debug("User deleted")
 
-        return BaseResponse(resp_code=200, responseDescription="User Successfully Deleted")
+        return BaseResponse(resp_code=200, response_description="User Successfully Deleted")
     
     except HTTPException as ex:
         LOG.error(f"HTTP Exception: {ex.detail}")
@@ -56,7 +56,7 @@ async def users_fetch() -> Users:
     try:
         users = await user_db.fetch_all()
 
-        return Users(resp_code=200, responseDescription="Success", users=[UserBase.model_validate(user) for user in users])
+        return Users(resp_code=200, response_description="Success", users=[UserBase.model_validate(user) for user in users])
 
     except HTTPException as ex:
         LOG.error(f"HTTP Exception: {ex.detail}")
