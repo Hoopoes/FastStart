@@ -7,7 +7,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 class InternalServerError(HTTPException):
     def __init__(self):
-        super().__init__(status_code=500, detail=BaseResponse(resp_code=500, responseDescription="Internal Server Error"))
+        super().__init__(status_code=500, detail=BaseResponse(resp_code=500, response_description="Internal Server Error"))
 
 def register_error_handlers(app: FastAPI):
     
@@ -16,7 +16,7 @@ def register_error_handlers(app: FastAPI):
     async def validation_exception_handler(request: Request, exc: RequestValidationError):
         response_content = BaseResponse(
             resp_code=422,
-            responseDescription="\n".join(
+            response_description="\n".join(
                 [
                     f"Field '{'.'.join(map(str, error['loc']))}' - {error['msg']}"
                     for error in exc.errors()
@@ -30,7 +30,7 @@ def register_error_handlers(app: FastAPI):
     async def http_exception_handler(request: Request, exc: HTTPException):
         response_content = BaseResponse(
             resp_code=exc.detail.resp_code if isinstance(exc.detail, BaseResponse) else str(exc.status_code),
-            responseDescription=exc.detail.responseDescription if isinstance(exc.detail, BaseResponse) else str(exc.detail)
+            response_description=exc.detail.response_description if isinstance(exc.detail, BaseResponse) else str(exc.detail)
         )
         return JSONResponse(status_code=exc.status_code, content=response_content.model_dump(), headers=exc.headers)
     
@@ -39,7 +39,7 @@ def register_error_handlers(app: FastAPI):
     async def starlette_http_exception_handler(request: Request, exc: StarletteHTTPException):
         response_content = BaseResponse(
             resp_code=exc.detail.resp_code if isinstance(exc.detail, BaseResponse) else str(exc.status_code),
-            responseDescription=exc.detail.responseDescription if isinstance(exc.detail, BaseResponse) else str(exc.detail)
+            response_description=exc.detail.response_description if isinstance(exc.detail, BaseResponse) else str(exc.detail)
         )
         return JSONResponse(status_code=exc.status_code, content=response_content.model_dump(), headers=exc.headers)
 
