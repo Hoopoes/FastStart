@@ -56,7 +56,7 @@ async def users_fetch() -> Users:
     try:
         users = await user_db.fetch_all()
 
-        return Users(resp_code=200, response_description="Success", users=[UserBase.model_validate(user) for user in users])
+        return Users(resp_code=200, response_description="Success", users=users)
 
     except HTTPException as ex:
         LOG.error(f"HTTP Exception: {ex.detail}")
