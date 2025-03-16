@@ -11,8 +11,8 @@ def register_error_handlers(app: FastAPI):
     @app.exception_handler(RequestValidationError)
     async def validation_exception_handler(request: Request, exc: RequestValidationError):
         response_content = BaseResponse(
-            resp_code="REQ_VALIDATION_FAILED",
-            resp_description="\n".join(
+            code="REQ_VALIDATION_FAILED",
+            message="\n".join(
                 [
                     f"Field '{'.'.join(map(str, error['loc']))}' - {error['msg']}"
                     for error in exc.errors()
@@ -25,8 +25,8 @@ def register_error_handlers(app: FastAPI):
     @app.exception_handler(HTTPException)
     async def http_exception_handler(request: Request, exc: HTTPException):
         response_content = BaseResponse(
-            resp_code=exc.detail.resp_code if isinstance(exc.detail, BaseResponse) else str(exc.status_code),
-            resp_description=exc.detail.resp_description if isinstance(exc.detail, BaseResponse) else str(exc.detail)
+            code=exc.detail.code if isinstance(exc.detail, BaseResponse) else str(exc.status_code),
+            message=exc.detail.message if isinstance(exc.detail, BaseResponse) else str(exc.detail)
         )
         return JSONResponse(status_code=exc.status_code, content=response_content.model_dump(), headers=exc.headers)
     
@@ -34,8 +34,8 @@ def register_error_handlers(app: FastAPI):
     @app.exception_handler(StarletteHTTPException)
     async def starlette_http_exception_handler(request: Request, exc: StarletteHTTPException):
         response_content = BaseResponse(
-            resp_code=exc.detail.resp_code if isinstance(exc.detail, BaseResponse) else str(exc.status_code),
-            resp_description=exc.detail.resp_description if isinstance(exc.detail, BaseResponse) else str(exc.detail)
+            code=exc.detail.code if isinstance(exc.detail, BaseResponse) else str(exc.status_code),
+            message=exc.detail.message if isinstance(exc.detail, BaseResponse) else str(exc.detail)
         )
         return JSONResponse(status_code=exc.status_code, content=response_content.model_dump(), headers=exc.headers)
 
