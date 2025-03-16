@@ -1,7 +1,8 @@
+from typing import Any
 from enum import StrEnum
 from pydantic import BaseModel, Field
-
 from app.schema.base_schema import BaseResponse
+
 
 class UserType(StrEnum):
     BUYER = "BUYER"
@@ -15,4 +16,4 @@ class CreateUser(UserBase):
     user_id: str = Field(..., max_length=10, description="user id assignment")
 
 class Users(BaseResponse):
-    users: list[UserBase]
+    users: list[Any]

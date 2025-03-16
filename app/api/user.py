@@ -24,16 +24,18 @@ async def users_fetch() -> Users:
     try:
         users = [
             {
+                "user_id": "2121",
                 "name": "umar",
                 "user_type": UserType.BUYER
             },
             {
+                "user_id": "2123",
                 "name": "mubbashir",
                 "user_type": UserType.SELLER
             }
         ]
 
-        return Users(code="SUCCESS", message="Success", users=[UserBase.model_validate(user) for user in users])
+        return Users(code="SUCCESS", message="Success", users=users)
 
     except HTTPException as ex:
         LOG.error(f"HTTP Exception: {ex.detail}")
