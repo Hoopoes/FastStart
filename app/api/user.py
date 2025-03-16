@@ -48,9 +48,9 @@ async def user_create(req: CreateUser) -> BaseResponse:
     try:
 
         try:
-            LOG.info(f"Create user {req.name}")
             if re.search(r"[^a-zA-Z0-9_]", req.name):
                 raise UserNameInvalid()
+            LOG.info(f"Create user {req.name}")
         except ValueError:
             raise UserIDAlreadyExist()
         
