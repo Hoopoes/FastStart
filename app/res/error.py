@@ -7,7 +7,7 @@ from app.schema.base_schema import BaseResponse
 
 class InternalServerError(HTTPException):
     def __init__(self):
-        super().__init__(status_code=500, detail=BaseResponse(resp_code="INTERNAL_SERVER_ERROR", resp_description="Internal Server Error"))
+        super().__init__(status_code=500, detail=BaseResponse(code="INTERNAL_SERVER_ERROR", message="Internal Server Error"))
 
 
 ############################################
@@ -16,9 +16,13 @@ class InternalServerError(HTTPException):
 
 class UserIDAlreadyExist(HTTPException):
     def __init__(self):
-        super().__init__(status_code=400, detail=BaseResponse(resp_code="USER_ALREADY_EXISTS", resp_description="User ID already exists"))
+        super().__init__(status_code=400, detail=BaseResponse(code="USER_ALREADY_EXISTS", message="User ID already exists"))
+
+class UserNameInvalid(HTTPException):
+    def __init__(self):
+        super().__init__(status_code=400, detail=BaseResponse(code="USER_NAME_INVALID", message="Username should not contain special characters"))
 
 class UserNotExist(HTTPException):
     def __init__(self):
-        super().__init__(status_code=400, detail=BaseResponse(resp_code="USER_NOT_FOUND", resp_description="User not exists with this id"))
+        super().__init__(status_code=400, detail=BaseResponse(code="USER_NOT_FOUND", message="User not exists with this id"))
         

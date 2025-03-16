@@ -2,8 +2,8 @@ from pydantic import BaseModel
 
 
 class BaseResponse(BaseModel):
-    resp_code: str
-    resp_description: str
+    code: str
+    message: str
 
 
 # Global response definitions
@@ -12,7 +12,7 @@ GLOBAL_RESPONSES = {
         "description": "Validation Error",
         "content": {
             "application/json": {
-                "example": BaseResponse(resp_code="REQ_VALIDATION_FAILED", resp_description="Field 'name' - This field is required").model_dump()
+                "example": BaseResponse(code="REQ_VALIDATION_FAILED", message="Field 'name' - This field is required").model_dump()
             }
         },
     },
@@ -20,7 +20,7 @@ GLOBAL_RESPONSES = {
         "description": "Internal Server Error",
         "content": {
             "application/json": {
-                "example": BaseResponse(resp_code="INTERNAL_SERVER_ERROR", resp_description="Internal Server Error").model_dump()
+                "example": BaseResponse(code="INTERNAL_SERVER_ERROR", message="Internal Server Error").model_dump()
             }
         },
     },
