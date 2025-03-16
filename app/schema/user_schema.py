@@ -1,7 +1,9 @@
+from typing import Any
 from enum import StrEnum
 from pydantic import BaseModel, Field
 from prisma.partials import UserSubFields
 from app.schema.base_schema import BaseResponse
+
 
 class UserType(StrEnum):
     BUYER = "BUYER"
