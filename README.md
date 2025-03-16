@@ -60,13 +60,13 @@ poetry run python main.py
 ## Project Structure
 
 ```
-📦FastAPI
+📦FastAPI-Base
  ┣ 📂app
  ┃ ┣ 📂api
  ┃ ┣ 📂job
  ┃ ┣ 📂middleware
  ┃ ┣ 📂models
- ┃ ┣ 📂response
+ ┃ ┣ 📂res
  ┃ ┣ 📂schema
  ┃ ┣ 📂service
  ┃ ┣ 📂utils
@@ -91,13 +91,13 @@ poetry run python main.py
   - **app**: Main application directory.
     - **api**: Route handlers.
     - **job**: Background tasks, such as cron jobs or S3 bucket tasks.
-    - **middleware**: Custom request/response handling.
+    - **middleware**: Custom middleware implementations for request/response processing.
     - **models**: Machine Learning models.
-    - **response**: Custom response handlers.
+    - **res**: Custom response handlers.
     - **schema**: Data validation schemas (using `pydantic`).
     - **service**: Business logic.
     - **utils**: Utility functions, such as a custom logger.
-    - `server.py`: Configures FastAPI server.
+    - `server.py`: Sets up and configures the FastAPI server.
 
   - **docs**: Project documentation.
 
