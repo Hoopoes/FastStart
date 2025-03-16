@@ -40,9 +40,10 @@ async def user_create(req: CreateUser) -> BaseResponse:
     try:
 
         try:
-            await user_db.create(user_id=req.user_id, name=req.name, user_type=req.user_type)
             if re.search(r"[^a-zA-Z0-9_]", req.name):
                 raise UserNameInvalid()
+            await user_db.create(user_id=req.user_id, name=req.name, user_type=req.user_type)
+            LOG.info(f"Create user {req.name}")
         except ValueError:
             raise UserIDAlreadyExist()
         
