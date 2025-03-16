@@ -19,10 +19,9 @@
 
 ## Features
 
-- [**Base Structure**](https://github.com/Hoopoes/FastStart/tree/base): A well-organized and scalable FastAPI project structure to kickstart your development.
-- [**Prisma-ORM Base Structure**](https://github.com/Hoopoes/FastStart/tree/prisma-orm): A base structure with Prisma ORM integrated.
 - **Multiple Variations**: Branches with various features and integrations, such as:
-  - [**YOLO Models**](https://github.com/Hoopoes/FastStart/tree/ultralytics-yolo): Implement YOLO (You Only Look Once) models for object detection and computer vision applications.
+  - [**Base Structure**](https://github.com/Hoopoes/FastStart/tree/base): A well-organized and scalable FastAPI project structure to kickstart your development.
+  - [**Prisma-ORM Base Structure**](https://github.com/Hoopoes/FastStart/tree/prisma-orm): A base structure with Prisma ORM integrated.
 - **Extensible**: Easily add and customize features as per your project requirements.
 - **Best Practices**: Follow industry best practices for code organization, security, and performance.
 
@@ -32,11 +31,11 @@ To get started with the FastAPI Starter Kit, clone the repository using the foll
 
 Example:
 ```bash
-git clone -b <BRANCH_NAME> https://github.com/Hoopoes/FastStart.git
+git clone --single-branch --b <BRANCH_NAME> https://github.com/Hoopoes/FastStart.git
 ```
 
 ```bash
-git clone -b base https://github.com/Hoopoes/FastStart.git
+git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
 ```
 
 ## Branches
@@ -45,12 +44,12 @@ git clone -b base https://github.com/Hoopoes/FastStart.git
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | [base](https://github.com/Hoopoes/FastStart/tree/base)             | The base branch with the simplest base FastAPI structure.                      |
 | [prisma-orm](https://github.com/Hoopoes/FastStart/tree/prisma-orm) | This branch has prisma orm implemented in the simplest base FastAPI structure. |
-| [ultralytics-yolo](https://github.com/Hoopoes/FastStart/tree/ultralytics-yolo)          | Example implementations of YOLO models for object detection. (Coming Soon)     |
+| sqlalchemy-orm                                                     | Coming Soon                                                                    |
 
-<!--## 🌟 Star History
+## 🌟 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Hoopoes/FastStart&type=Timeline)](https://star-history.com/#Hoopoes/FastStart&Timeline)
--->
+
 
 ## Contact
 
