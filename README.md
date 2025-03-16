@@ -116,7 +116,7 @@ poetry run python main.py
 ## Project Structure
 
 ```
-📦FastAPI-Base
+📦FastAPI-PrismaORM
  ┣ 📂app
  ┃ ┣ 📂api
  ┃ ┣ 📂db
