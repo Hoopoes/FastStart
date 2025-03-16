@@ -22,7 +22,6 @@ dependencies = [
 ]
 
 
-
 [tool.poetry.group.cronJob.dependencies]
 typing-inspect = "^0.9.0"
 fastapi-utils = "^0.8.0"
@@ -30,6 +29,7 @@ fastapi-utils = "^0.8.0"
 
 [tool.poetry]
 package-mode = false
+
 
 [project.urls]
 Repository = "https://github.com/Hoopoes/FastStart"
