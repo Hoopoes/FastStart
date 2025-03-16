@@ -2,7 +2,7 @@
   <img src="docs/fastapi.svg" alt="fastapi-logo" width="100">
 </p>
 
-# FastAPI: Base Structure
+# FastAPI: Prisma-ORM Structure
 
 This repository's branch serves as a modular and flexible starting point for developing backend microservices with FastAPI.
 
