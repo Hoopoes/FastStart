@@ -8,7 +8,7 @@ from pydantic import BaseModel
 load_dotenv()
 
 with open("pyproject.toml", "rb") as f:
-    poetry: dict[str] = tomllib.load(f).get("tool", {}).get("poetry", {})
+    poetry: dict[str] = tomllib.load(f).get("project", {})
     name = poetry.get("name")
     description = poetry.get("description")
     version = poetry.get("version")
