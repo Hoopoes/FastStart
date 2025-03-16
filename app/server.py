@@ -41,6 +41,7 @@ def create_app() -> FastAPI:
         middleware=make_middleware(),
         lifespan=lifespan,
         responses=GLOBAL_RESPONSES,
+        root_path=CONFIG.root_path,
         docs_url="/docs",
         redoc_url="/redoc",
     )
