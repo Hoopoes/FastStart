@@ -20,7 +20,7 @@ Before setting up this project, ensure you have a basic understanding of the fol
 1. Clone the Repository
 
 ```bash
-git clone -b base https://github.com/Hoopoes/FastStart.git
+git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
 ```
 
 2. Create a Virtual Environment (Optional)
