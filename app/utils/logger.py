@@ -31,7 +31,7 @@ log_config = {
         },
         "file": {
             "formatter": "file_formatter",
-            "class": "app.utils.custom_log.CustomTimedRotatingFileHandler",
+            "class": "app.utils.log_handler.CustomTimedRotatingFileHandler",
             "filename": os.path.join(LOG_DIRECTORY, "today.log"),
             "when": "midnight",
             "backupCount": 7,

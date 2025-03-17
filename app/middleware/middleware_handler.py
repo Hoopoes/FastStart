@@ -6,7 +6,7 @@ from app.middleware.usage import usage_middleware
 
 
 
-def register_middleware_handler(app: FastAPI):
+def register_middlewares(app: FastAPI):
     
     @app.middleware("http")
     async def middleware_handler(request: Request, call_next):

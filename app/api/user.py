@@ -3,7 +3,7 @@ from app.utils.logger import LOG
 from app.schema.base_schema import BaseResponse
 from fastapi import APIRouter, HTTPException, Query
 from app.schema.user_schema import CreateUser, UserBase, UserType, Users
-from app.res.error_doc import (
+from app.res.openapi_error import (
     USER_CREATE_RESPONSES, 
     USER_DELETE_RESPONSES
 )
@@ -20,7 +20,7 @@ user_router: APIRouter = APIRouter(tags=[tag])
 
 
 @user_router.get('/db/user/fetch')
-async def users_fetch() -> Users:
+async def fetch_users() -> Users:
     try:
         users = [
             {
@@ -46,7 +46,7 @@ async def users_fetch() -> Users:
     
 
 @user_router.post('/db/user/create', responses=USER_CREATE_RESPONSES)
-async def user_create(req: CreateUser) -> BaseResponse:
+async def create_user(req: CreateUser) -> BaseResponse:
     try:
 
         try:
@@ -69,7 +69,7 @@ async def user_create(req: CreateUser) -> BaseResponse:
 
 
 @user_router.delete('/db/user/delete', responses=USER_DELETE_RESPONSES)
-async def user_delete(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponse:
+async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponse:
     try:
 
         user = {

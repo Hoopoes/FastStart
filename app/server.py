@@ -5,9 +5,9 @@ from app.api.routes import MAIN_ROUTER
 from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from app.schema.base_schema import GLOBAL_RESPONSES
-from app.res.exception_handlers import register_error_handlers
-from app.middleware.middleware_handler import register_middleware_handler
+from app.res.openapi_error import GLOBAL_RESPONSES
+from app.res.exception_handler import register_error_handlers
+from app.middleware.middleware_handler import register_middlewares
 
 
 
@@ -47,7 +47,7 @@ def create_app() -> FastAPI:
     )
     init_routers(app_=app_)
     register_error_handlers(app=app_)
-    register_middleware_handler(app=app_)
+    register_middlewares(app=app_)
     return app_
 
 
