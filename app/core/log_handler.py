@@ -1,6 +1,6 @@
 import os
 from datetime import datetime, timedelta
-from app.utils.logger import LOG_DIRECTORY
+from app.core.logger import LOG_DIRECTORY
 from logging.handlers import TimedRotatingFileHandler
 
 # Custom TimedRotatingFileHandler

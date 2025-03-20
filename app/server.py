@@ -1,7 +1,7 @@
 from config import CONFIG
 from fastapi import FastAPI
 from app.job.cron_job import cron_job
-from app.api.routes import MAIN_ROUTER
+from app.api.route import API_ROUTER
 from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,7 +12,7 @@ from app.middleware.middleware_handler import register_middlewares
 
 
 def init_routers(app_: FastAPI) -> None:
-    app_.include_router(MAIN_ROUTER)
+    app_.include_router(API_ROUTER)
 
 
 def make_middleware() -> list[Middleware]:
@@ -44,6 +44,7 @@ def create_app() -> FastAPI:
         root_path=CONFIG.root_path,
         docs_url="/docs",
         redoc_url="/redoc",
+        
     )
     init_routers(app_=app_)
     register_error_handlers(app=app_)

@@ -1,12 +1,12 @@
 from fastapi import HTTPException
-from app.schema.base_schema import BaseResponse
+from app.schema.base import BaseResponseDto
 from app.res.error import InternalServerError, UserIDAlreadyExist, UserNameInvalid, UserNotExist
 
 
 def error_example(response: HTTPException):
-    detail: BaseResponse
+    detail: BaseResponseDto
     if isinstance(response, HTTPException):
-        if isinstance(response.detail, BaseResponse):
+        if isinstance(response.detail, BaseResponseDto):
             detail = response.detail
             return {"summary": type(response).__name__, "value": detail.model_dump()}
     return {"summary": "", "value": {}}
@@ -32,7 +32,7 @@ GLOBAL_RESPONSES = {
         "description": "Validation Error",
         "content": {
             "application/json": {
-                "example": BaseResponse(code="REQ_VALIDATION_FAILED", message="Field 'name' - This field is required").model_dump()
+                "example": BaseResponseDto(code="REQ_VALIDATION_FAILED", message="Field 'name' - This field is required").model_dump()
             }
         },
     },
@@ -47,16 +47,17 @@ GLOBAL_RESPONSES = {
 }
 
 
-# User APIs
 
-USER_CREATE_RESPONSES = error_docs(status_code=400, description="User Create Errors",
-    exec=[
-        UserIDAlreadyExist(),
-        UserNameInvalid()
-    ]
-)
-USER_DELETE_RESPONSES = error_docs(status_code=400, description="User Delete Errors",
-    exec=[
-        UserNotExist()
-    ]
-)
+class UserResponseDoc:
+
+    create = error_docs(status_code=400, description="User Create Errors",
+        exec=[
+            UserIDAlreadyExist(),
+            UserNameInvalid()
+        ]
+    )
+    delete = error_docs(status_code=400, description="User Delete Errors",
+        exec=[
+            UserNotExist()
+        ]
+    )
