@@ -10,7 +10,7 @@ from app.schema.user import CreateUserDto, UsersDto
 user_router = APIRouter()
 
 
-@user_router.get('/db/user/fetch')
+@user_router.get('/fetch')
 async def fetch_users() -> UsersDto:
     try:
         users = [
@@ -36,7 +36,7 @@ async def fetch_users() -> UsersDto:
         raise http_error.InternalServerError()
     
 
-@user_router.post('/db/user/create', responses=UserResponseDoc.create)
+@user_router.post('/create', responses=UserResponseDoc.create)
 async def create_user(req: CreateUserDto) -> BaseResponseDto:
     try:
 
@@ -59,7 +59,7 @@ async def create_user(req: CreateUserDto) -> BaseResponseDto:
         raise http_error.InternalServerError()
 
 
-@user_router.delete('/db/user/delete', responses=UserResponseDoc.delete)
+@user_router.delete('/delete', responses=UserResponseDoc.delete)
 async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponseDto:
     try:
 
