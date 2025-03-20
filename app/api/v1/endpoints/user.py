@@ -1,76 +1,67 @@
 import re
+from app.core.logger import LOG
 import app.db.user_db as user_db
-from app.utils.logger import LOG
-from app.schema.base_schema import BaseResponse
+import app.res.error as http_error
+from app.schema.base import BaseResponseDto
+from app.res.openapi_error import UserResponseDoc
 from fastapi import APIRouter, HTTPException, Query
-from app.schema.user_schema import CreateUser, Users
-from app.res.openapi_error import (
-    USER_CREATE_RESPONSES, 
-    USER_DELETE_RESPONSES
-)
-from app.res.error import (
-    InternalServerError, 
-    UserIDAlreadyExist, 
-    UserNameInvalid, 
-    UserNotExist
-)
+from app.schema.user import CreateUserDto, UsersDto
 
 
-tag: str = "User"
-user_router: APIRouter = APIRouter(tags=[tag])
+user_router = APIRouter()
 
 
 @user_router.get('/db/user/fetch')
-async def fetch_users() -> Users:
+async def fetch_users() -> UsersDto:
     try:
         users = await user_db.fetch_all()
 
-        return Users(code="SUCCESS", message="Success", users=users)
+        return UsersDto(code="SUCCESS", message="Success", users=users)
     
     except HTTPException as ex:
         LOG.error(f"HTTP Exception: {ex.detail}")
         raise ex
     except Exception as ex:
         LOG.error(f"Unexpected error occurred: {ex}", exc_info=True)
-        raise InternalServerError()
+        raise http_error.InternalServerError()
+    
 
-
-@user_router.post('/db/user/create', responses=USER_CREATE_RESPONSES)
-async def create_user(req: CreateUser) -> BaseResponse:
+@user_router.post('/db/user/create', responses=UserResponseDoc.create)
+async def create_user(req: CreateUserDto) -> BaseResponseDto:
     try:
 
         try:
             if re.search(r"[^a-zA-Z0-9_]", req.name):
-                raise UserNameInvalid()
+                raise http_error.UserNameInvalid()
             await user_db.create(user_id=req.user_id, name=req.name, user_type=req.user_type)
             LOG.info(f"Create user {req.name}")
         except ValueError:
-            raise UserIDAlreadyExist()
+            raise http_error.UserIDAlreadyExist()
         
 
         LOG.debug("User created")
-        return BaseResponse(code="SUCCESS", message="User Successfully Created")
+        return BaseResponseDto(code="SUCCESS", message="User Successfully Created")
     
     except HTTPException as ex:
         LOG.error(f"HTTP Exception: {ex.detail}")
         raise ex
     except Exception as ex:
         LOG.error(f"Unexpected error occurred: {ex}", exc_info=True)
-        raise InternalServerError()
+        raise http_error.InternalServerError()
 
 
-@user_router.delete('/db/user/delete', responses=USER_DELETE_RESPONSES)
-async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponse:
+@user_router.delete('/db/user/delete', responses=UserResponseDoc.delete)
+async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponseDto:
     try:
 
         user = await user_db.delete(user_id=user_id)
 
         if user is None:
-            raise UserNotExist()
+            raise http_error.UserNotExist()
         
         LOG.debug("User deleted")
 
-        return BaseResponse(code="SUCCESS", message="User Successfully Deleted")
+        return BaseResponseDto(code="SUCCESS", message="User Successfully Deleted")
     
 
     except HTTPException as ex:
@@ -78,4 +69,4 @@ async def delete_user(user_id: str = Query(..., max_length=10, description="user
         raise ex
     except Exception as ex:
         LOG.error(f"Unexpected error occurred: {ex}", exc_info=True)
-        raise InternalServerError()
+        raise http_error.InternalServerError()

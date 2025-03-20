@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 
-class BaseResponse(BaseModel):
+class BaseResponseDto(BaseModel):
     code: str
     message: str

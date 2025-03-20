@@ -1,6 +1,5 @@
-
 import time
-from app.utils.logger import LOG
+from app.core.logger import LOG
 from fastapi import FastAPI, Request
 from app.middleware.usage import usage_middleware
 

@@ -119,7 +119,12 @@ poetry run python main.py
 📦FastAPI-PrismaORM
  ┣ 📂app
  ┃ ┣ 📂api
- ┃ ┣ 📂db
+ ┃ ┃ ┣ 📂v1
+ ┃ ┃ ┃ ┣ 📂endpoints
+ ┃ ┃ ┃ ┃ ┗ 🐍user.py
+ ┃ ┃ ┃ ┗ 🐍v1_route.py
+ ┃ ┃ ┗ 🐍route.py
+ ┃ ┣ 📂core
  ┃ ┣ 📂job
  ┃ ┣ 📂middleware
  ┃ ┣ 📂models
@@ -132,13 +137,13 @@ poetry run python main.py
  ┣ 📂logs
  ┣ 📂prisma
  ┣ 📂test
- ┣ 💾.env
- ┣ 💾.env.example
+ ┣ 🗝️.env
+ ┣ 🗝️.env.example
  ┣ 📜.gitattributes
  ┣ 📜.gitignore
  ┣ 🐍config.py
  ┣ 🐍main.py
- ┣ ⚙️poetry.lock
+ ┣ 🔒poetry.lock
  ┗ ⚙️pyproject.toml
 ```
 
@@ -148,12 +153,13 @@ poetry run python main.py
   
   - **app**: Main application directory.
     - **api**: Route handlers.
+    - **core**: Essential configurations and components, like settings, logging, and security.
     - **db**: Database setup and operations.
     - **job**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middleware**: Custom middleware implementations for request/response processing.
-    - **models**: Machine Learning models.
+    - **models**: Python classes representing application data and core objects.
     - **res**: Custom response handlers.
-    - **schema**: Data validation schemas (using `pydantic`).
+    - **schema**: Data Transfer Objects (DTOs) & Data validation schemas (using `pydantic`).
     - **service**: Business logic.
     - **utils**: Utility functions, such as a custom logger.
     - `server.py`: Sets up and configures the FastAPI server.

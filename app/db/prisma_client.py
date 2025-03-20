@@ -1,7 +1,7 @@
 import prisma
 import asyncio
 from datetime import timedelta
-from app.utils.logger import LOG
+from app.core.logger import LOG
 
 
 prisma_client = prisma.Prisma(auto_register=True)
