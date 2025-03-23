@@ -39,10 +39,10 @@ class JsonFormatter(logging.Formatter):
             "level": record.levelname,
             "time": self.formatTime(record, "%Y-%m-%dT%H:%M:%SZ"),
             "msg": record.getMessage(),
-            "name": record.name,
+            # "name": record.name,
             "module": record.module,
-            "funcName": record.funcName,
-            "lineno": record.lineno,
+            # "funcName": record.funcName,
+            # "lineno": record.lineno,
         }
 
         # Add extra fields dynamically, excluding unwanted ones
@@ -54,4 +54,4 @@ class JsonFormatter(logging.Formatter):
 
         log_record.update(extra_fields)
 
-        return json.dumps(log_record, ensure_ascii=False) #, indent=2)
+        return json.dumps(log_record, ensure_ascii=False)#, indent=2)

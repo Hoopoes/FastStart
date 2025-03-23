@@ -46,5 +46,21 @@ dictConfig(log_config)
 # Define a logger
 LOG = logging.getLogger(f"{CONFIG.app_name}")
 
+
+# Custom logger adapter to add context dynamically
+class ContextLoggerAdapter(logging.LoggerAdapter):
+    def process(self, msg, kwargs):
+        # Merge extra data from adapter and log message
+        extra = self.extra.copy()
+        if "extra" in kwargs:
+            extra.update(kwargs["extra"])
+        kwargs["extra"] = extra
+        return msg, kwargs
+
+def get_logger(**kwargs):
+    extra = kwargs
+    return ContextLoggerAdapter(LOG, extra)
+
+
 # Test logging
 LOG.info(f"{CONFIG.app_name} logger initialized")
