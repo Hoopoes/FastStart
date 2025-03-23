@@ -14,7 +14,7 @@ def read_log_file(date: str):
     if date != "today":
         date = datetime.strptime(date, "%Y%m%d").strftime("%Y-%m-%d")
     log_file = os.path.join(LOG_DIRECTORY, f"{date}.log")
-    print(log_file)
+    
     if not os.path.exists(log_file):
         raise HTTPException(status_code=404, detail="Log file not found")
 
@@ -78,8 +78,12 @@ def view_logs(date: str = Query("today", description="Date in YYYY-MM-DD format 
     try:
         logs, date = read_log_file(date)
         html_table = generate_html_table(logs)
+        if date == "today":
+            log_date = datetime.today().strftime("%Y-%m-%d")
+        else:
+            log_date = date  # Already in YYYY-MM-DD format
         with open("app/assets/logger_view.html", 'r')as file:
-            html_content = Template(file.read()).substitute(date=date, html_table=html_table)
+            html_content = Template(file.read()).substitute(date=log_date, html_table=html_table)
         return HTMLResponse(content=html_content)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
