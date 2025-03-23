@@ -1,10 +1,11 @@
 from app.core.logger import LOG
 from fastapi.responses import JSONResponse
-from app.res.error import InternalServerError
 from app.schema.base import BaseResponseDto
+from app.res.error import InternalServerError
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
+
 
 def register_error_handlers(app: FastAPI):
     # Validation error handler

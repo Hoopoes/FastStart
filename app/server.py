@@ -6,7 +6,7 @@ from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from app.res.openapi_error import GLOBAL_RESPONSES
-from app.res.exception_handler import register_error_handlers
+from app.core.exception_handler import register_error_handlers
 from app.middleware.middleware_handler import register_middlewares
 
 
