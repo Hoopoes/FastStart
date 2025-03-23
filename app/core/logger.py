@@ -3,7 +3,6 @@ import logging
 from config import CONFIG
 from logging.config import dictConfig
 
-
 # Ensure logs directory exists
 LOG_DIRECTORY = "logs"
 os.makedirs(LOG_DIRECTORY, exist_ok=True)
@@ -13,25 +12,19 @@ log_config = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
-        "default": {
-            "()": "uvicorn.logging.DefaultFormatter",
-            "fmt": "%(levelprefix)s | %(asctime)s | %(message)s",
-            "datefmt": "%Y-%m-%d %H:%M:%S",
-        },
-        "file_formatter": {
-            "format": "%(levelname)s | %(asctime)s | %(message)s",
-            "datefmt": "%Y-%m-%d %H:%M:%S",
+        "json": {
+            "()": "app.core.log_handler.JsonFormatter",  # JSON logs for Grafana Loki
         },
     },
     "handlers": {
-        "default": {
-            "formatter": "default",
+        "console": {
             "class": "logging.StreamHandler",
-            "stream": "ext://sys.stderr",
+            "formatter": "json",
+            "stream": "ext://sys.stdout",
         },
         "file": {
-            "formatter": "file_formatter",
             "class": "app.core.log_handler.CustomTimedRotatingFileHandler",
+            "formatter": "json",
             "filename": os.path.join(LOG_DIRECTORY, "today.log"),
             "when": "midnight",
             "backupCount": 7,
@@ -40,8 +33,9 @@ log_config = {
     },
     "loggers": {
         f"{CONFIG.app_name}": {
-            "handlers": ["default", "file"],
-            "level": "DEBUG",  # Set your desired logging level here
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+            "propagate": False,
         },
     },
 }

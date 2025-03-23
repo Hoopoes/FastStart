@@ -25,6 +25,7 @@ async def fetch_users() -> UsersDto:
                 "user_type": "SELLER"
             }
         ]
+        LOG.debug("user list", extra={"user list": users})
 
         return UsersDto(code="SUCCESS", message="Success", users=users)
 
