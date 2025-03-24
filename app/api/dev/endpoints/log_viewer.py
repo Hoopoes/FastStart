@@ -12,7 +12,7 @@ log_router = APIRouter()
 @log_router.get("/logs", response_class=HTMLResponse)
 def view_logs(date: str = Query("today", description="Date in YYYY-MM-DD format or 'today'")):
     try:
-        logs, date = read_log_file(date)  # Get the fallback status as well
+        logs, date = read_log_file(date)
         html_table = generate_html_table(logs)
         
         if date == "today":
@@ -21,7 +21,7 @@ def view_logs(date: str = Query("today", description="Date in YYYY-MM-DD format 
             log_date = date  # Already in YYYY-MM-DD format
         print(log_date)
         
-        with open("app/assets/logger_view.html", 'r') as file:
+        with open("app/template/logger_view.html", 'r') as file:
             html_content = Template(file.read()).substitute(date=log_date, html_table=html_table)
         
         return HTMLResponse(content=html_content)
