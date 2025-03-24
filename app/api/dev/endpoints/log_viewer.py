@@ -12,8 +12,9 @@ log_router = APIRouter()
 
 def read_log_file(date: str):
     if date != "today":
-        date = datetime.now().strftime("%Y-%m-%d")
+        date = datetime.strptime(date, "%Y%m%d").strftime("%Y-%m-%d")
     log_file = os.path.join(LOG_DIRECTORY, f"{date}.log")
+    print(log_file)
     if not os.path.exists(log_file):
         raise HTTPException(status_code=404, detail="Log file not found")
 
@@ -31,7 +32,7 @@ def read_log_file(date: str):
                 buffer = ""  # Reset buffer after successful load
             except json.JSONDecodeError:
                 buffer += " "  # Add a space and continue accumulating
-    return logs
+    return logs, date
 
 
 def generate_html_table(logs):
@@ -75,7 +76,7 @@ def generate_html_table(logs):
 @log_router.get("/logs", response_class=HTMLResponse)
 def view_logs(date: str = Query("today", description="Date in YYYY-MM-DD format or 'today'")):
     try:
-        logs = read_log_file(date)
+        logs, date = read_log_file(date)
         html_table = generate_html_table(logs)
         with open("app/assets/logger_view.html", 'r')as file:
             html_content = Template(file.read()).substitute(date=date, html_table=html_table)
