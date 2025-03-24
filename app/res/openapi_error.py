@@ -1,6 +1,8 @@
 from fastapi import HTTPException
+import app.res.error as http_error
 from app.schema.base import BaseResponseDto
-from app.res.error import InternalServerError, UserIDAlreadyExist, UserNameInvalid, UserNotExist
+
+
 
 
 def error_example(response: HTTPException):
@@ -40,7 +42,7 @@ GLOBAL_RESPONSES = {
         "description": "Internal Server Error",
         "content": {
             "application/json": {
-                "example": InternalServerError().detail.model_dump()
+                "example": http_error.InternalServerError().detail.model_dump()
             }
         },
     },
@@ -52,12 +54,12 @@ class UserResponseDoc:
 
     create = error_docs(status_code=400, description="User Create Errors",
         exec=[
-            UserIDAlreadyExist(),
-            UserNameInvalid()
+            http_error.UserIDAlreadyExist(),
+            http_error.UserNameInvalid()
         ]
     )
     delete = error_docs(status_code=400, description="User Delete Errors",
         exec=[
-            UserNotExist()
+            http_error.UserNotExist()
         ]
     )
