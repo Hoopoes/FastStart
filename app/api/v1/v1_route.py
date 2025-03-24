@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from app.api.v1.endpoints.user import user_router
 
-# Rrouter for the entire versioned API
+# Router for the entire versioned API
 API_V1_ROUTER = APIRouter(prefix="/v1")
 
 # Include all routers from the endpoints

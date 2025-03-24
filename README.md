@@ -71,7 +71,7 @@ poetry run python main.py
  ┃ ┣ 📂core
  ┃ ┣ 📂job
  ┃ ┣ 📂middleware
- ┃ ┣ 📂models
+ ┃ ┣ 📂model
  ┃ ┣ 📂res
  ┃ ┣ 📂schema
  ┃ ┣ 📂service
@@ -96,11 +96,11 @@ poetry run python main.py
   
   - **app**: Main application directory.
     - **api**: Route handlers.
-    - **core**: Essential configurations and components, like settings, logging, and security.
+    - **core**: Essential configurations and components, including settings, logging, exception handling, and authentication/security.
     - **job**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middleware**: Custom middleware implementations for request/response processing.
-    - **models**: Python classes representing application data and core objects.
-    - **res**: Custom response handlers.
+    - **model**: Python classes representing application data and core objects.
+    - **res**: Custom response definitions, including error responses.
     - **schema**: Data Transfer Objects (DTOs) & Data validation schemas (using `pydantic`).
     - **service**: Business logic.
     - **utils**: Utility functions, such as a custom logger.
