@@ -62,24 +62,24 @@ poetry run python main.py
 ```
 📦FastAPI-Base
  ┣ 📂app
- ┃ ┣ 📂api
+ ┃ ┣ 📂core
+ ┃ ┣ 📂errors
+ ┃ ┣ 📂jobs
+ ┃ ┣ 📂middleware
+ ┃ ┣ 📂models
+ ┃ ┣ 📂routes
  ┃ ┃ ┣ 📂v1
- ┃ ┃ ┃ ┣ 📂endpoints
+ ┃ ┃ ┃ ┣ 📂api
  ┃ ┃ ┃ ┃ ┗ 🐍user.py
  ┃ ┃ ┃ ┗ 🐍v1_route.py
  ┃ ┃ ┗ 🐍route.py
- ┃ ┣ 📂core
- ┃ ┣ 📂job
- ┃ ┣ 📂middleware
- ┃ ┣ 📂model
- ┃ ┣ 📂res
- ┃ ┣ 📂schema
- ┃ ┣ 📂service
+ ┃ ┣ 📂schemas
+ ┃ ┣ 📂services
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
  ┣ 📂docs
  ┣ 📂logs
- ┣ 📂test
+ ┣ 📂tests
  ┣ 🗝️.env
  ┣ 🗝️.env.example
  ┣ 📜.gitattributes
@@ -95,22 +95,23 @@ poetry run python main.py
 - **Root Directory**: Configuration files and entry points.
   
   - **app**: Main application directory.
-    - **api**: Route handlers.
-    - **core**: Essential configurations and components, including settings, logging, exception handling, and authentication/security.
-    - **job**: Background tasks, such as cron jobs or S3 bucket tasks.
+    - **core**: Essential configurations (settings, logging, exception handling, authentication).
+    - **errors**: Custom error response definitions, including error documentation for swagger.
+    - **jobs**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middleware**: Custom middleware implementations for request/response processing.
-    - **model**: Python classes representing application data and core objects.
-    - **res**: Custom response definitions, including error responses.
-    - **schema**: Data Transfer Objects (DTOs) & Data validation schemas (using `pydantic`).
-    - **service**: Business logic.
-    - **utils**: Utility functions, such as a custom logger.
+    - **models**: Database models & core application objects.
+    - **routes**: API endpoints and route handlers.
+      - **v1** – Versioned API routes.
+    - **schemas**: Data Transfer Objects (DTOs) & validation schemas (`pydantic`).
+    - **services**: Business logic.
+    - **utils**: Utility functions.
     - `server.py`: Sets up and configures the FastAPI server.
 
   - **docs**: Project documentation.
 
   - **logs**: Log files.
 
-  - **test**: Unit and integration tests.
+  - **tests**: Unit and integration tests.
 
   - **.env**: Secret Environment configuration that is ignored by Git.
 

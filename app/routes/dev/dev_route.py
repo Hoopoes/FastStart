@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.dev.endpoints.log_viewer import log_router
+from app.routes.dev.api.log_viewer import log_router
 
 # Router for the entire versioned API
 API_DEV_ROUTER = APIRouter(prefix="/dev", tags=["Developer"])

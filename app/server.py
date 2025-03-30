@@ -1,11 +1,11 @@
 from config import CONFIG
 from fastapi import FastAPI
-from app.job.cron_job import cron_job
-from app.api.route import API_ROUTER
+from app.jobs.cron_job import cron_job
+from app.routes.route import API_ROUTER
 from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from app.res.openapi_error import GLOBAL_RESPONSES
+from app.errors.openapi_error import GLOBAL_RESPONSES
 from app.middleware.handler import register_middlewares
 from app.core.exception_handler import register_error_handlers
 

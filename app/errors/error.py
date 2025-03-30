@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from app.schema.base import BaseResponseDto
+from app.schemas.base import BaseResponseDto
 
 ############################################
 #               Server Errors              #

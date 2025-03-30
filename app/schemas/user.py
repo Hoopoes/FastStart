@@ -1,6 +1,7 @@
 from typing import Any, Literal
 from pydantic import BaseModel, Field
-from app.schema.base import BaseResponseDto
+
+from app.schemas.base import BaseResponseDto
 
 
 class CreateUserDto(BaseModel):

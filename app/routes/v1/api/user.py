@@ -1,10 +1,11 @@
 import re
-import app.res.error as http_error
-from app.core.logger import get_logger
-from app.schema.base import BaseResponseDto
-from app.res.openapi_error import UserResponseDoc
 from fastapi import APIRouter, HTTPException, Query
-from app.schema.user import CreateUserDto, UsersDto
+
+import app.errors.error as http_error
+from app.core.logger import get_logger
+from app.schemas.base import BaseResponseDto
+from app.errors.openapi_error import UserResponseDoc
+from app.schemas.user import CreateUserDto, UsersDto
 
 
 user_router = APIRouter()

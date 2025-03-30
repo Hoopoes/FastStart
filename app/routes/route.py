@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from app.api.v1.v1_route import API_V1_ROUTER
-from app.api.dev.dev_route import API_DEV_ROUTER
+from app.routes.v1.v1_route import API_V1_ROUTER
+from app.routes.dev.dev_route import API_DEV_ROUTER
 
 
 # Router for the entire versioned API

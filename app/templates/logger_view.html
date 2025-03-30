@@ -6,6 +6,14 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+    <script id="logData" type="application/json">
+        {
+            "date": @{date},
+            "logs": @{logs},
+            "headers": @{header_list}
+        }
+    </script>
+
     <script>
         function filterLogs() {
             const input = document.getElementById("logFilter").value.toLowerCase();
@@ -51,9 +59,99 @@
             // Get the full current URL path dynamically
             const fullPath = window.location.href.split('?')[0];
             // Construct the URL by replacing any existing date or query part
-            const url = fullPath + '?date=' + logDate;
+            const url = `${fullPath}?date=${logDate}`;
             window.location.href = url;
         }
+
+
+        function generateHeader(headerList) {
+
+            const table = document.getElementById("logTable");
+            const tableHeader = table.getElementsByTagName("thead")[0];
+            const tableHeaderRecord = tableHeader.getElementsByTagName("tr")[0];
+
+            // Clear existing headers to prevent duplication
+            tableHeaderRecord.innerHTML = "";
+
+            headerList.forEach((headerText, index) => {
+                const newHeaderCell = document.createElement("th");
+                newHeaderCell.className = "py-3 px-4 border-b border-gray-600";
+                newHeaderCell.textContent = headerText;
+
+                // Add a line break
+                newHeaderCell.appendChild(document.createElement("br"));
+
+                // Create input filter field
+                const filterElement = document.createElement("input");
+                filterElement.type = "text";
+                filterElement.placeholder = "Filter...";
+                filterElement.className = "mt-1 p-1 w-full bg-gray-900 text-gray-300 border border-gray-600 rounded";
+
+                // Correct onkeyup event
+                filterElement.onkeyup = () => filterColumn(index);
+
+                newHeaderCell.appendChild(filterElement);
+                tableHeaderRecord.appendChild(newHeaderCell);
+            });
+
+        }
+
+        function generateRecords(headerList, logs) {
+
+            const table = document.getElementById("logTable");
+            const tableBody = table.getElementsByTagName("tbody")[0];
+
+            tableBody.innerHTML = "";
+
+            logs.forEach((log, index) => {
+                const tableRecord = document.createElement("tr");
+                // Zebra striping for rows
+                tableRecord.className = (index % 2 == 0) ? "bg-gray-800 hover:bg-gray-700" : "bg-gray-900 hover:bg-gray-800"
+
+                headerList.forEach(header => {
+                    const cell = document.createElement("td");
+                    cell.className = "py-2 px-4 border-b border-gray-700";
+
+                    let value = log[header] || "";
+                    if (typeof value === "object") {
+                        value = "<pre>" + JSON.stringify(value, null, 2) + "</pre>";
+                    }
+
+                    cell.innerHTML = value;
+                    tableRecord.appendChild(cell);
+                });
+                tableBody.appendChild(tableRecord);
+
+            });
+
+        }
+
+        function setDate(date) {
+            const h1 = document.getElementById("log-heading");
+            h1.innerHTML = `${h1.innerHTML} ${date}`
+            // Set default selected date
+            document.getElementById("logDate").value = date;
+        }
+
+
+        window.onload = function () {
+            try {
+                // Get JSON safely from the script tag
+                const logDataElement = document.getElementById("logData").textContent;
+                const logData = JSON.parse(logDataElement);
+
+                const date = logData.date;
+                const logs = logData.logs;
+                const headerList = logData.headers;
+
+                generateHeader(headerList);
+                generateRecords(headerList, logs);
+                setDate(date);
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+            }
+        };
+
     </script>
 </head>
 
@@ -70,7 +168,7 @@
     </br>
     <div class='bg-gray-800 shadow-md rounded-lg p-4 mb-6'>
         <div class='flex justify-between items-center'>
-            <h1 class='text-2xl font-bold text-white'>Logs for ${date}</h1>
+            <h1 id=log-heading class='text-2xl font-bold text-white'>Logs for</h1>
             <div class='flex items-center gap-2'>
                 <input type='date' id='logDate' class='p-2 bg-gray-700 text-gray-300 border border-gray-600 rounded'>
                 <button onclick='fetchLogs()'
@@ -88,7 +186,13 @@
         </div>
     </div>
 
-    ${html_table}
+
+    <table id='logTable' class='min-w-full bg-gray-800 text-gray-200 shadow-md rounded-lg'>
+        <thead class='bg-gray-700'>
+            <tr></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 
 </body>
 

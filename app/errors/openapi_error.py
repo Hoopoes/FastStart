@@ -1,6 +1,7 @@
 from fastapi import HTTPException
-import app.res.error as http_error
-from app.schema.base import BaseResponseDto
+
+import app.errors.error as http_error
+from app.schemas.base import BaseResponseDto
 
 
 
