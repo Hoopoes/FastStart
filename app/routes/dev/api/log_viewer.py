@@ -25,7 +25,7 @@ def view_logs(date: str = Query("today", description="Date in YYYY-MM-DD format 
             log_date = date  # Already in YYYY-MM-DD format
         
 
-        with open("app/template/logger_view.html", 'r') as file:
+        with open("app/templates/logger_view.html", 'r') as file:
             html_content = file.read()
             html_content= html_content.replace("@{date}", json.dumps(log_date))\
                 .replace("@{logs}", json.dumps(logs, ensure_ascii=False))\
