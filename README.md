@@ -69,7 +69,7 @@ poetry run python main.py
  ┃ ┣ 📂models
  ┃ ┣ 📂routes
  ┃ ┃ ┣ 📂v1
- ┃ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┃ ┣ 📂endpoints
  ┃ ┃ ┃ ┃ ┗ 🐍user.py
  ┃ ┃ ┃ ┗ 🐍v1_route.py
  ┃ ┃ ┗ 🐍route.py
