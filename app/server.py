@@ -1,14 +1,15 @@
 from config import CONFIG
 from fastapi import FastAPI
-from app.job.cron_job import cron_job
-from app.api.route import API_ROUTER
+from app.jobs.cron_job import cron_job
+from app.routes.route import API_ROUTER
 from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from app.res.openapi_error import GLOBAL_RESPONSES
-from app.res.exception_handler import register_error_handlers
+from app.errors.openapi_error import GLOBAL_RESPONSES
+from app.middleware.handler import register_middlewares
+from app.core.exception_handler import register_error_handlers
 from app.db.prisma_client import connect_prisma, disconnect_prisma
-from app.middleware.middleware_handler import register_middlewares
+
 
 
 def init_routers(app_: FastAPI) -> None:

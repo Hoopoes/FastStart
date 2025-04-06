@@ -1,10 +1,11 @@
 import os
+import json
+import logging
 from datetime import datetime, timedelta
 from app.core.logger import LOG_DIRECTORY
-from logging.handlers import TimedRotatingFileHandler
 
 # Custom TimedRotatingFileHandler
-class CustomTimedRotatingFileHandler(TimedRotatingFileHandler):
+class CustomTimedRotatingFileHandler(logging.handlers.TimedRotatingFileHandler):
     def doRollover(self):
         """
         Custom rollover method to rename log files in the desired format.
@@ -29,3 +30,28 @@ class CustomTimedRotatingFileHandler(TimedRotatingFileHandler):
         
         # Update the last rollover time
         self.rolloverAt = self.rolloverAt + self.interval
+
+# Custom JSON formatter
+class JsonFormatter(logging.Formatter):
+    def format(self, record):
+        # Extract default fields
+        log_record = {
+            "level": record.levelname,
+            "time": self.formatTime(record, "%Y-%m-%dT%H:%M:%SZ"),
+            "msg": record.getMessage(),
+            # "name": record.name,
+            "module": record.module,
+            # "funcName": record.funcName,
+            # "lineno": record.lineno,
+        }
+
+        # Add extra fields dynamically, excluding unwanted ones
+        extra_fields = {
+            key: value
+            for key, value in record.__dict__.items()
+            if key not in logging.LogRecord(None, None, "", 0, "", (), None).__dict__
+        }
+
+        log_record.update(extra_fields)
+
+        return json.dumps(log_record, ensure_ascii=False)#, indent=2)

@@ -1,7 +1,9 @@
 from typing import Literal
 from pydantic import BaseModel, Field
 from prisma.partials import UserSubFields
-from app.schema.base import BaseResponseDto
+
+from app.schemas.base import BaseResponseDto
+
 
 
 class CreateUserDto(BaseModel):
