@@ -17,7 +17,7 @@
 
 **FastStart** is a modular and flexible starting point for building backend microservices with FastAPI. This repository provides a robust base structure with various extensions and configurations to help you get started quickly and efficiently.
 
-## Features
+## ✨ Features
 
 - **Multiple Variations**: Branches with various features and integrations, such as:
   - [**Base Structure**](https://github.com/Hoopoes/FastStart/tree/base): A well-organized and scalable FastAPI project structure to kickstart your development.
@@ -25,7 +25,7 @@
 - **Extensible**: Easily add and customize features as per your project requirements.
 - **Best Practices**: Follow industry best practices for code organization, security, and performance.
 
-## Getting Started
+## 🚀Getting Started
 
 To get started with the FastAPI Starter Kit, clone the repository using the following command:
 
@@ -38,7 +38,7 @@ git clone --single-branch --b <BRANCH_NAME> https://github.com/Hoopoes/FastStart
 git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
 ```
 
-## Branches
+## 🌱 Branches
 
 | Branch Name                                                        | Description                                                                    |
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------|
@@ -46,12 +46,19 @@ git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
 | [prisma-orm](https://github.com/Hoopoes/FastStart/tree/prisma-orm) | This branch has prisma orm implemented in the simplest base FastAPI structure. |
 | sqlalchemy-orm                                                     | Coming Soon                                                                    |
 
+## 📂 Log Viewer
+
+**FastStart** also includes a **Log Viewer** for easy access to logs and error tracking.
+
+![Logger Viewer](images/log_viewer.png)
+
+To access the Log Viewer, simply navigate to the appropriate route in the application (you may need to configure the path depending on your setup). This feature helps you monitor the logs and debug your application more effectively.
+
 ## 🌟 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Hoopoes/FastStart&type=Timeline)](https://star-history.com/#Hoopoes/FastStart&Timeline)
 
-
-## Contact
+## 📞 Contact
 
 For any questions or feedback, please reach out to:
 - Muhammad Umar Anzar - omer.anzar2@gmail.com
