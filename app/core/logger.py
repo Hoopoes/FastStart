@@ -16,11 +16,17 @@ log_config = {
             "()": "app.core.log_handler.JsonFormatter",  # JSON logs for Grafana Loki
         },
     },
+    "filters": {
+        "context_filter": {
+            "()": "app.core.log_handler.ContextLogFilter"
+        }
+    },
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
             "formatter": "json",
             "stream": "ext://sys.stdout",
+            "filters": ["context_filter"]
         },
         "file": {
             "class": "app.core.log_handler.CustomTimedRotatingFileHandler",
@@ -29,6 +35,7 @@ log_config = {
             "when": "midnight",
             "backupCount": 7,
             "encoding": "utf-8",
+            "filters": ["context_filter"]
         },
     },
     "loggers": {
@@ -45,22 +52,6 @@ dictConfig(log_config)
 
 # Define a logger
 LOG = logging.getLogger(f"{CONFIG.app_name}")
-
-
-# Custom logger adapter to add context dynamically
-class ContextLoggerAdapter(logging.LoggerAdapter):
-    def process(self, msg, kwargs):
-        # Merge extra data from adapter and log message
-        extra = self.extra.copy()
-        if "extra" in kwargs:
-            extra.update(kwargs["extra"])
-        kwargs["extra"] = extra
-        return msg, kwargs
-
-def get_logger(**kwargs):
-    extra = kwargs
-    return ContextLoggerAdapter(LOG, extra)
-
 
 # Test logging
 LOG.info(f"{CONFIG.app_name} logger initialized")

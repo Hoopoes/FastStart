@@ -1,10 +1,30 @@
 import os
 import json
 import logging
+from contextvars import ContextVar
 from datetime import datetime, timedelta
+
 from app.core.logger import LOG_DIRECTORY
 
-# Custom TimedRotatingFileHandler
+
+# --- ContextVar setup for dynamic log context ---
+_log_context: ContextVar[dict] = ContextVar("_log_context", default={})
+
+def set_log_context(**kwargs):
+    _log_context.set(kwargs)
+
+def get_log_context():
+    return _log_context.get()
+
+class ContextLogFilter(logging.Filter):
+    def filter(self, record):
+        context = get_log_context()
+        for key, value in context.items():
+            setattr(record, key, value)
+        return True
+    
+
+# --- Custom file handler with midnight rotation ---
 class CustomTimedRotatingFileHandler(logging.handlers.TimedRotatingFileHandler):
     def doRollover(self):
         """
@@ -31,7 +51,8 @@ class CustomTimedRotatingFileHandler(logging.handlers.TimedRotatingFileHandler):
         # Update the last rollover time
         self.rolloverAt = self.rolloverAt + self.interval
 
-# Custom JSON formatter
+
+# --- JSON formatter that includes dynamic context ---
 class JsonFormatter(logging.Formatter):
     def format(self, record):
         # Extract default fields
@@ -45,11 +66,18 @@ class JsonFormatter(logging.Formatter):
             # "lineno": record.lineno,
         }
 
+        # --- Add context from ContextVar ---
+        context = get_log_context()
+        for key, value in context.items():
+            # Convert non-serializable types like UUID to string
+            log_record[key] = str(value) if not isinstance(value, (str, int, float, bool, type(None))) else value
+
         # Add extra fields dynamically, excluding unwanted ones
+        standard_attrs = logging.LogRecord(None, None, "", 0, "", (), None).__dict__
         extra_fields = {
             key: value
             for key, value in record.__dict__.items()
-            if key not in logging.LogRecord(None, None, "", 0, "", (), None).__dict__
+            if key not in standard_attrs
         }
 
         log_record.update(extra_fields)
