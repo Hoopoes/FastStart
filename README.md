@@ -159,7 +159,7 @@ poetry run python main.py
     - **middleware**: Custom middleware implementations for request/response processing.
     - **models**: Database models & core application objects.
     - **routes**: API endpoints and route handlers.
-      - **v1** – Versioned API routes.
+      - **v1** – Versioned API routes (e.g., v1). Additional versions like v2 or v3 can be created as needed for backward compatibility.
     - **schemas**: Data Transfer Objects (DTOs) & validation schemas (`pydantic`).
     - **services**: Business logic.
     - **utils**: Utility functions.
