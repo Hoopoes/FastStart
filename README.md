@@ -133,6 +133,7 @@ poetry run python main.py
  ┃ ┣ 📂services
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
+ ┣ 📂db
  ┣ 📂docs
  ┣ 📂logs
  ┣ 📂prisma
@@ -153,7 +154,6 @@ poetry run python main.py
   
   - **app**: Main application directory.
     - **core**: Essential configurations (settings, logging, exception handling, authentication).
-    - **db**: Database setup and operations.
     - **errors**: Custom error response definitions, including error documentation for swagger.
     - **jobs**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middleware**: Custom middleware implementations for request/response processing.
@@ -164,7 +164,9 @@ poetry run python main.py
     - **services**: Business logic.
     - **utils**: Utility functions.
     - `server.py`: Sets up and configures the FastAPI server.
-
+  
+  - **db**: Local SQLite database that is ignored by Git.
+  
   - **docs**: Project documentation.
 
   - **logs**: Log files.
