@@ -1,15 +1,16 @@
 import re
 import uuid
-from pydantic import BaseModel
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Query
 
 
 from app.core.logger import LOG
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
+from app.utils.helpers import handle_exception
 from app.core.log_handler import set_log_context
 from app.errors.openapi_error import UserResponseDoc
 from app.schemas.user import CreateUserDto, UsersDto
+
 
 
 user_router = APIRouter()
@@ -36,14 +37,8 @@ async def fetch_users() -> UsersDto:
 
         return UsersDto(code="SUCCESS", message="Success", users=users)
 
-    except HTTPException as ex:
-        LOG.error("HTTP Exception", extra={
-            "obj": ex.detail.model_dump() if isinstance(ex.detail, BaseModel) else ex.detail
-        })
-        raise ex
     except Exception as ex:
-        LOG.error(f"Unexpected error occurred: {ex}", exc_info=True)
-        raise http_error.InternalServerError()
+        handle_exception(ex)
     
 
 @user_router.post('/create', responses=UserResponseDoc.create)
@@ -65,14 +60,8 @@ async def create_user(req: CreateUserDto) -> BaseResponseDto:
         LOG.debug("User created")
         return BaseResponseDto(code="SUCCESS", message="User Successfully Created")
     
-    except HTTPException as ex:
-        LOG.error("HTTP Exception", extra={
-            "obj": ex.detail.model_dump() if isinstance(ex.detail, BaseModel) else ex.detail
-        })
-        raise ex
     except Exception as ex:
-        LOG.error(f"Unexpected error occurred: {ex}", exc_info=True)
-        raise http_error.InternalServerError()
+        handle_exception(ex)
 
 @user_router.delete('/delete', responses=UserResponseDoc.delete)
 async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponseDto:
@@ -93,11 +82,5 @@ async def delete_user(user_id: str = Query(..., max_length=10, description="user
 
         return BaseResponseDto(code="SUCCESS", message="User Successfully Deleted")
     
-    except HTTPException as ex:
-        LOG.error("HTTP Exception", extra={
-            "obj": ex.detail.model_dump() if isinstance(ex.detail, BaseModel) else ex.detail
-        })
-        raise ex
     except Exception as ex:
-        LOG.error(f"Unexpected error occurred: {ex}", exc_info=True)
-        raise http_error.InternalServerError()
+        handle_exception(ex)
