@@ -11,8 +11,8 @@ logs/*.log
 temp
 
 # Sqlite db
-prisma/*.db
-prisma/*.db-journal
+db/*.db
+db/*.db-journal
 
 # Environment file
 .env

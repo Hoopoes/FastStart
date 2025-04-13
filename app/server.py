@@ -4,11 +4,11 @@ from app.jobs.cron_job import cron_job
 from app.routes.route import API_ROUTER
 from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
+from app.core.database import init_db, close_db
 from fastapi.middleware.cors import CORSMiddleware
 from app.errors.openapi_error import GLOBAL_RESPONSES
 from app.middleware.handler import register_middlewares
 from app.core.exception_handler import register_error_handlers
-from app.db.prisma_client import connect_prisma, disconnect_prisma
 
 
 
@@ -30,10 +30,10 @@ def make_middleware() -> list[Middleware]:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await connect_prisma()
+    await init_db()
     await cron_job()
     yield
-    await disconnect_prisma()
+    await close_db()
 
 
 def create_app() -> FastAPI:

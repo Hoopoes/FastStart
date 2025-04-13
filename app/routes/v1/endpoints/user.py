@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, Query
 
 
 from app.core.logger import LOG
-import app.db.user_db as user_db
+import app.services.user_db as user_db
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
 from app.core.log_handler import set_log_context

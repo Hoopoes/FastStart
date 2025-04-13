@@ -2,7 +2,7 @@ import prisma
 from typing import Optional
 from prisma.models import User
 from prisma.partials import UserSubFields
-from app.db.prisma_client import prisma_client
+from app.core.database import prisma_client
 
 
 async def create(user_id: str, name: str, user_type: str):

@@ -9,7 +9,7 @@ generator client {
 //////////////////////////// SQLITE ////////////////////////////
 datasource db {
   provider = "sqlite"
-  url      = "file:dev.db"
+  url      = "file:../db/dev.db" // Go one folder back and store dev.db in db folder
 }
 
 model User {
