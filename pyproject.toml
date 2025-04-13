@@ -19,7 +19,9 @@ dependencies = [
     "uvicorn[standard] (>=0.34.0,<0.35.0)",
     "fastapi[standard] (>=0.115.11,<0.116.0)",
     "gunicorn (>=23.0.0,<24.0.0) ; sys_platform == \"linux\"",
-    "prisma (>=0.15.0,<0.16.0)",
+    "sqlalchemy (>=2.0.40,<3.0.0)",
+    "alembic (>=1.15.2,<2.0.0)",
+    "aiosqlite (>=0.21.0,<0.22.0)",
 ]
 
 

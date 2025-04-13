@@ -2,7 +2,7 @@
   <img src="docs/fastapi.svg" alt="fastapi-logo" width="100">
 </p>
 
-# FastAPI: Prisma-ORM Structure
+# FastAPI: Async SQLAlchemy Structure
 
 This repository's branch serves as a modular and flexible starting point for developing backend microservices with FastAPI.
 
@@ -14,7 +14,7 @@ Before setting up this project, ensure you have a basic understanding of the fol
 
 - **[Pyenv](https://github.com/pyenv/pyenv)**: Manages multiple Python versions. For windows [pyenv-win](https://github.com/pyenv-win/pyenv-win).
 
-- **[Prisma](https://prisma-client-py.readthedocs.io/en/stable/)**: Object-Relational Mapper (ORM) for databases.
+- **[Alembic](https://alembic.sqlalchemy.org)**: Lightweight database migration tool for SQLAlchemy.
 
 
 ## Setup
@@ -22,7 +22,7 @@ Before setting up this project, ensure you have a basic understanding of the fol
 1. Clone the Repository
 
 ```bash
-git clone --single-branch -b prisma-orm https://github.com/Hoopoes/FastStart.git
+git clone --single-branch -b sqlalchemy https://github.com/Hoopoes/FastStart.git
 ```
 
 2. Create a Virtual Environment (Optional)
@@ -43,56 +43,32 @@ Install project's dependencies listed in the `pyproject.toml`.
 poetry install
 ```
 
-5. Generate Database Prisma Schema
+5. Initialize Alembic
 
-Generate the Prisma schema required for your project.
-
-```bash
-poetry shell
-prisma generate
-```
-
-Alternatively, you can use Poetry to run Prisma commands:
-
-```bash
-poetry run prisma generate
-```
-
-6. Migrate Schema into SQL Database (Not for MongoDB)
-
-This step is necessary when you first set up the database or when the schema has changed.
-
-Run the following command to apply the schema migration to your SQL database:
-
-```bash
-prisma migrate dev --name <migration_name>
-```
-
-For the initial migration, you can use:
+(Optional) Skip this if the alembic/ folder already exists
 
 ```bash
 poetry shell
-prisma migrate dev --name init
+alembic init -t async alembic
 ```
+This creates the `alembic` folder and a preconfigured async-compatible `env.py`.
 
-- If you need to alter the schema and migrate again, use:
+
+6. Create and Apply Initial Migration
+
+Edit `alembic/env.py` to import your models and use the correct `SQLALCHEMY_DATABASE_URL` from your settings.
 
 ```bash
-poetry shell
-prisma migrate dev --name <new_migration_name>
+# Create initial migration from SQLAlchemy models
+alembic revision --autogenerate -m "Initial tables"
 ```
 
-Alternatively, you can use Poetry to run Prisma commands:
 
-```bash
-poetry run prisma migrate dev --name <new_migration_name>
-```
-
-7. Apply Existing Migrations (if they have already been created)
+7. Apply Existing Migrations
 
 If you already have migrations and just need to apply them (without generating new ones), you can use:
 ```bash
-prisma migrate deploy
+alembic upgrade head
 ```
 This will apply any pending migrations to your SQL database.
 
@@ -116,7 +92,7 @@ poetry run python main.py
 ## Project Structure
 
 ```
-📦FastAPI-PrismaORM
+📦FastAPI-SQLAlchemy
  ┣ 📂app
  ┃ ┣ 📂core
  ┃ ┣ 📂errors
@@ -136,12 +112,13 @@ poetry run python main.py
  ┣ 📂db
  ┣ 📂docs
  ┣ 📂logs
- ┣ 📂prisma
+ ┣ 📂alembic
  ┣ 📂tests
  ┣ 🗝️.env
  ┣ 🗝️.env.example
  ┣ 📜.gitattributes
  ┣ 📜.gitignore
+ ┣ 📜alembic.ini
  ┣ 🐍config.py
  ┣ 🐍main.py
  ┣ 🔒poetry.lock
@@ -171,15 +148,16 @@ poetry run python main.py
 
   - **logs**: Log files.
 
-  - **prisma**: Prisma ORM files.
-    - `partial_types.py`: Prisma partial types definitions.
-    - `schema.prisma`: Prisma schema definitions.
+  - **alembic**: Alembic Migrations files.
+    - `env.py`: Configures DB connection and runs migrations.
 
   - **tests**: Unit and integration tests.
 
   - **.env**: Secret Environment configuration that is ignored by Git.
 
   - **.env.example**: Example environment configuration file that is not ignored by Git.
+
+  - **alembic.py**: Alembic config file for database connection, migration paths, and settings.
 
   - **config.py**: Project configurations, such as loading environment keys.
 

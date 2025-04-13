@@ -4,8 +4,7 @@ def main(args):
     import uvicorn
     import subprocess
     
-    subprocess.run(["prisma", "generate"])
-    subprocess.run(["prisma", "migrate", "deploy"])
+    subprocess.run(["alembic", "upgrade", "head"])
     
     uvicorn.run(
         app="app.server:app",

@@ -1,9 +1,12 @@
 import re
 import uuid
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy.ext.asyncio import AsyncSession
+
 
 
 from app.core.logger import LOG
+from app.core.database import get_db
 import app.errors.error as http_error
 import app.services.user_db as user_db
 from app.schemas.base import BaseResponseDto
@@ -18,9 +21,9 @@ user_router = APIRouter()
 
 
 @user_router.get('/fetch')
-async def fetch_users() -> UsersDto:
+async def fetch_users(db: AsyncSession = Depends(get_db)) -> UsersDto:
     try:
-        users = await user_db.fetch_all()
+        users = await user_db.fetch_all(db)
         # Attach custom data to the log entry using 'extra'
         LOG.debug("user list", extra={"obj": [_.model_dump() for _ in users]})
 
@@ -31,7 +34,7 @@ async def fetch_users() -> UsersDto:
     
 
 @user_router.post('/create', responses=UserResponseDoc.create)
-async def create_user(req: CreateUserDto) -> BaseResponseDto:
+async def create_user(req: CreateUserDto, db: AsyncSession = Depends(get_db)) -> BaseResponseDto:
 
     # Set log context for this API function
     set_log_context(user_id=req.user_id, uuid=str(uuid.uuid4()))
@@ -41,7 +44,7 @@ async def create_user(req: CreateUserDto) -> BaseResponseDto:
         try:
             if re.search(r"[^a-zA-Z0-9_]", req.name):
                 raise http_error.UserNameInvalid()
-            await user_db.create(user_id=req.user_id, name=req.name, user_type=req.user_type)
+            await user_db.create(db, user_id=req.user_id, name=req.name, user_type=req.user_type)
             LOG.info(f"Create user {req.name}")
         except ValueError:
             raise http_error.UserIDAlreadyExist()
@@ -54,14 +57,14 @@ async def create_user(req: CreateUserDto) -> BaseResponseDto:
         handle_exception(ex)
 
 @user_router.delete('/delete', responses=UserResponseDoc.delete)
-async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponseDto:
+async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment"), db: AsyncSession = Depends(get_db)) -> BaseResponseDto:
 
     # Set log context for this API function
     set_log_context(user_id=user_id, uuid=str(uuid.uuid4()))
 
     try:
 
-        user = await user_db.delete(user_id=user_id)
+        user = await user_db.delete(db, user_id=user_id)
 
         if user is None:
             raise http_error.UserNotExist()
