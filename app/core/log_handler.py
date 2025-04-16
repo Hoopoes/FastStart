@@ -4,7 +4,9 @@ import logging
 from contextvars import ContextVar
 from datetime import datetime, timedelta
 
-from app.core.logger import LOG_DIRECTORY
+# Ensure logs directory exists
+LOG_DIRECTORY = "logs"
+os.makedirs(LOG_DIRECTORY, exist_ok=True)
 
 
 # --- ContextVar setup for dynamic log context ---
