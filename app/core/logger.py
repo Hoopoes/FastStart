@@ -3,9 +3,7 @@ import logging
 from config import CONFIG
 from logging.config import dictConfig
 
-# Ensure logs directory exists
-LOG_DIRECTORY = "logs"
-os.makedirs(LOG_DIRECTORY, exist_ok=True)
+from app.core.log_handler import LOG_DIRECTORY
 
 # Logging configuration
 log_config = {
