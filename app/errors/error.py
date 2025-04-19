@@ -7,6 +7,7 @@ from app.schemas.base import BaseResponseDto
 
 class InternalServerError(HTTPException):
     def __init__(self):
+        self.detail: BaseResponseDto
         super().__init__(status_code=500, detail=BaseResponseDto(code="INTERNAL_SERVER_ERROR", message="Internal Server Error"))
 
 

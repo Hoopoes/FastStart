@@ -5,7 +5,7 @@ from app.routes.route import API_ROUTER
 from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from app.errors.openapi_error import GLOBAL_RESPONSES
+from app.errors.error_docs import GLOBAL_RESPONSES
 from app.middleware.handler import register_middlewares
 from app.core.exception_handler import register_error_handlers
 
