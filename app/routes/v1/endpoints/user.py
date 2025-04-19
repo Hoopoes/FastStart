@@ -12,7 +12,7 @@ import app.services.user_db as user_db
 from app.schemas.base import BaseResponseDto
 from app.utils.helpers import handle_exception
 from app.core.log_handler import set_log_context
-from app.errors.openapi_error import UserResponseDoc
+from app.errors.error_docs import UserResponseDoc
 from app.schemas.user import CreateUserDto, UsersDto
 
 
