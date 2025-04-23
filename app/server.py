@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 from config import CONFIG
-from app.jobs.cron_job import cron_job
 from app.routes.route import API_ROUTER
 from app.errors.error_docs import GLOBAL_RESPONSES
 from app.middlewares.exception import exception_handler
@@ -31,7 +30,6 @@ def make_middleware() -> list[Middleware]:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await cron_job()
     yield
 
 

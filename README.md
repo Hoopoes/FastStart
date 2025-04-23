@@ -2,7 +2,7 @@
   <img src="docs/fastapi.svg" alt="fastapi-logo" width="100">
 </p>
 
-# FastAPI: Base Structure
+# FastAPI: Minimal Structure
 
 This repository's branch serves as a modular and flexible starting point for developing backend microservices with FastAPI.
 
@@ -20,7 +20,7 @@ Before setting up this project, ensure you have a basic understanding of the fol
 1. Clone the Repository
 
 ```bash
-git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
+git clone --single-branch -b minimal https://github.com/Hoopoes/FastStart.git
 ```
 
 2. Create a Virtual Environment (Optional)
@@ -60,10 +60,9 @@ poetry run python main.py
 ## Project Structure
 
 ```
-📦FastAPI-Base
+📦FastAPI-Minimal
  ┣ 📂app
  ┃ ┣ 📂errors
- ┃ ┣ 📂jobs
  ┃ ┣ 📂middlewares
  ┃ ┣ 📂models
  ┃ ┣ 📂routes
@@ -74,12 +73,10 @@ poetry run python main.py
  ┃ ┃ ┗ 🐍route.py
  ┃ ┣ 📂schemas
  ┃ ┣ 📂services
- ┃ ┣ 📂templates
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
  ┣ 📂docs
  ┣ 📂logs
- ┣ 📂tests
  ┣ 🗝️.env
  ┣ 🗝️.env.example
  ┣ 📜.gitattributes
@@ -96,7 +93,6 @@ poetry run python main.py
   
   - **app**: Main application directory.
     - **errors**: Custom error response definitions, including error documentation for swagger.
-    - **jobs**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middlewares**: Custom middleware for request/response processing and exception handling.
     - **models**: Database models & core application objects.
     - **routes**: API endpoints and route handlers.
@@ -109,8 +105,6 @@ poetry run python main.py
   - **docs**: Project documentation.
 
   - **logs**: Log files.
-
-  - **tests**: Unit and integration tests.
 
   - **.env**: Secret Environment configuration that is ignored by Git.
 

@@ -1,7 +1,6 @@
 import time
 from app.utils.logger import LOG
 from fastapi import FastAPI, Request, Response
-from app.middlewares.usage import usage_middleware
 
 
 
@@ -24,7 +23,7 @@ def middleware_handler(app: FastAPI):
         # Process the request and calculate the time taken
         response: Response
         response = await call_next(request)
-        response = await usage_middleware(response=response)
+        # response = await usage_middleware(response=response)
         process_time = time.perf_counter() - start_time
 
         # Add the process time to response headers

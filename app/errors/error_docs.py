@@ -1,6 +1,5 @@
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
-from app.errors.openapi_errors import error_by_status, generate_error_docs
 
 
 # Global response definitions
@@ -22,20 +21,3 @@ GLOBAL_RESPONSES = {
         },
     },
 }
-
-
-
-class UserResponseDoc:
-
-    create = generate_error_docs([
-        error_by_status(400, "Bad Request", 
-            http_error.UserIDAlreadyExist(), 
-            http_error.UserNameInvalid()
-        ),
-    ])
-    
-    delete = generate_error_docs([
-        error_by_status(400, "Bad Request",
-            http_error.UserNotExist(),
-        ),
-    ])
