@@ -21,6 +21,7 @@
 
 - **Multiple Variations**: Branches with various features and integrations, such as:
   - [**Base Structure**](https://github.com/Hoopoes/FastStart/tree/base): A well-organized and scalable FastAPI project structure to kickstart your development.
+  - [**Minimal Structure**](https://github.com/Hoopoes/FastStart/tree/minimal): A lightweight, stripped-down FastAPI setup ideal for quick starts and learning.
   - [**Prisma-ORM Structure**](https://github.com/Hoopoes/FastStart/tree/prisma-orm): A base structure with Prisma ORM integrated.
   - [**Async SQLAlchemy Structure**](https://github.com/Hoopoes/FastStart/tree/sqlalchemy): A base structure with SQLAlchemy (async).
 - **Extensible**: Easily add and customize features as per your project requirements.
@@ -32,7 +33,7 @@ To get started with the FastAPI Starter Kit, clone the repository using the foll
 
 Example:
 ```bash
-git clone --single-branch --b <BRANCH_NAME> https://github.com/Hoopoes/FastStart.git
+git clone --single-branch -b <BRANCH_NAME> https://github.com/Hoopoes/FastStart.git
 ```
 
 ```bash
@@ -44,6 +45,7 @@ git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
 | Branch Name                                                        | Description                                                                    |
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | [base](https://github.com/Hoopoes/FastStart/tree/base)             | The base branch with the simplest base FastAPI structure.                      |
+| [minimal](https://github.com/Hoopoes/FastStart/tree/minimal)       | A minimal and lightweight FastAPI starter with only essential boilerplate.     |
 | [prisma-orm](https://github.com/Hoopoes/FastStart/tree/prisma-orm) | This branch has prisma orm implemented in the simplest base FastAPI structure. |
 | [sqlalchemy](https://github.com/Hoopoes/FastStart/tree/sqlalchemy) | This branch implements Async SQLAlchemy for database handling in FastAPI.      |
 
