@@ -1,15 +1,16 @@
-from config import CONFIG
 from fastapi import FastAPI
-from app.jobs.cron_job import cron_job
-from app.routes.route import API_ROUTER
 from fastapi.middleware import Middleware
 from contextlib import asynccontextmanager
-from app.core.database import init_db, close_db
 from fastapi.middleware.cors import CORSMiddleware
-from app.errors.error_docs import GLOBAL_RESPONSES
-from app.middleware.handler import register_middlewares
-from app.core.exception_handler import register_error_handlers
 
+
+from config import CONFIG
+from app.jobs.cron_job import cron_job
+from app.routes.route import API_ROUTER
+from app.db.database import init_db, close_db
+from app.errors.error_docs import GLOBAL_RESPONSES
+from app.middlewares.exception import exception_handler
+from app.middlewares.middleware import middleware_handler
 
 
 def init_routers(app_: FastAPI) -> None:
@@ -50,8 +51,8 @@ def create_app() -> FastAPI:
         
     )
     init_routers(app_=app_)
-    register_error_handlers(app=app_)
-    register_middlewares(app=app_)
+    exception_handler(app=app_)
+    middleware_handler(app=app_)
     return app_
 
 

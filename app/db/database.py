@@ -1,6 +1,6 @@
 import prisma
 from datetime import timedelta
-from app.core.logger import LOG
+from app.utils.logger import LOG
 
 
 prisma_client = prisma.Prisma(auto_register=True)

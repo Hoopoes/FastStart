@@ -1,7 +1,7 @@
 import os
 import json
 from datetime import datetime
-from app.core.logger import LOG_DIRECTORY
+from app.utils.logger import LOG_DIRECTORY
 
 
 

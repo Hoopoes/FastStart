@@ -3,12 +3,11 @@ import uuid
 from fastapi import APIRouter, Query
 
 
-from app.core.logger import LOG
+from app.utils.logger import LOG
 import app.errors.error as http_error
 import app.services.user_db as user_db
 from app.schemas.base import BaseResponseDto
-from app.utils.helpers import handle_exception
-from app.core.log_handler import set_log_context
+from app.utils.log_handler import set_log_context
 from app.errors.error_docs import UserResponseDoc
 from app.schemas.user import CreateUserDto, UsersDto
 
@@ -27,7 +26,7 @@ async def fetch_users() -> UsersDto:
         return UsersDto(code="SUCCESS", message="Success", users=users)
 
     except Exception as ex:
-        handle_exception(ex)
+        raise ex
     
 
 @user_router.post('/create', responses=UserResponseDoc.create)
@@ -51,7 +50,7 @@ async def create_user(req: CreateUserDto) -> BaseResponseDto:
         return BaseResponseDto(code="SUCCESS", message="User Successfully Created")
     
     except Exception as ex:
-        handle_exception(ex)
+        raise ex
 
 @user_router.delete('/delete', responses=UserResponseDoc.delete)
 async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponseDto:
@@ -71,4 +70,4 @@ async def delete_user(user_id: str = Query(..., max_length=10, description="user
         return BaseResponseDto(code="SUCCESS", message="User Successfully Deleted")
     
     except Exception as ex:
-        handle_exception(ex)
+        raise ex

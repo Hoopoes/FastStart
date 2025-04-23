@@ -118,10 +118,10 @@ poetry run python main.py
 ```
 📦FastAPI-PrismaORM
  ┣ 📂app
- ┃ ┣ 📂core
+ ┃ ┣ 📂db
  ┃ ┣ 📂errors
  ┃ ┣ 📂jobs
- ┃ ┣ 📂middleware
+ ┃ ┣ 📂middlewares
  ┃ ┣ 📂models
  ┃ ┣ 📂routes
  ┃ ┃ ┣ 📂v1
@@ -131,6 +131,7 @@ poetry run python main.py
  ┃ ┃ ┗ 🐍route.py
  ┃ ┣ 📂schemas
  ┃ ┣ 📂services
+ ┃ ┣ 📂templates
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
  ┣ 📂db
@@ -153,16 +154,16 @@ poetry run python main.py
 - **Root Directory**: Configuration files and entry points.
   
   - **app**: Main application directory.
-    - **core**: Essential configurations (settings, logging, exception handling, authentication).
+    - **db**: Database configuration and connection setup (e.g. engine, session, initialization).
     - **errors**: Custom error response definitions, including error documentation for swagger.
     - **jobs**: Background tasks, such as cron jobs or S3 bucket tasks.
-    - **middleware**: Custom middleware implementations for request/response processing.
+    - **middlewares**: Custom middleware for request/response processing and exception handling.
     - **models**: Database models & core application objects.
     - **routes**: API endpoints and route handlers.
       - **v1** – Versioned API routes (e.g., v1). Additional versions like v2 or v3 can be created as needed for backward compatibility.
     - **schemas**: Data Transfer Objects (DTOs) & validation schemas (`pydantic`).
     - **services**: Business logic.
-    - **utils**: Utility functions.
+    - **utils**: Helper utilities for various tasks (e.g. logging).
     - `server.py`: Sets up and configures the FastAPI server.
   
   - **db**: Local SQLite database that is ignored by Git.
