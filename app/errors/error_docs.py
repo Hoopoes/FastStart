@@ -1,6 +1,6 @@
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
-from app.core.error_docs_handler import error_by_status, generate_error_docs
+from app.errors.openapi_errors import error_by_status, generate_error_docs
 
 
 # Global response definitions

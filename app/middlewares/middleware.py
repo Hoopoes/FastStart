@@ -1,11 +1,11 @@
 import time
-from app.core.logger import LOG
+from app.utils.logger import LOG
 from fastapi import FastAPI, Request, Response
-from app.middleware.usage import usage_middleware
+from app.middlewares.usage import usage_middleware
 
 
 
-def register_middlewares(app: FastAPI):
+def middleware_handler(app: FastAPI):
     
     @app.middleware("http")
     async def _handler(request: Request, call_next):

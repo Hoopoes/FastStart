@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime, timezone
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.core.database import Base
+from app.db.database import Base
 
 class User(Base):
     __tablename__ = 'users'

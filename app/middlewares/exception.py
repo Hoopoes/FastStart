@@ -3,13 +3,13 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.core.logger import LOG
+from app.utils.logger import LOG
+import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
-from app.errors.error import InternalServerError
 
 
 
-def register_error_handlers(app: FastAPI):
+def exception_handler(app: FastAPI):
     # Validation error handler
     @app.exception_handler(RequestValidationError)
     async def _validation_exception(request: Request, exc: RequestValidationError):
@@ -38,4 +38,9 @@ def register_error_handlers(app: FastAPI):
     @app.exception_handler(Exception)
     async def _global_exception(request: Request, exc: Exception):
         LOG.error(f"Unexpected error occurred: {exc}", exc_info=True)
-        return JSONResponse(status_code=500, content=InternalServerError().detail.model_dump())
+        return JSONResponse(status_code=500, content=http_error.InternalServerError().detail.model_dump())
+
+    @app.exception_handler(http_error.CustomHTTPException)
+    async def custom_http_exception_handler(request: Request, exc: http_error.CustomHTTPException):
+        LOG.error("Custom HTTP Exception", extra={"obj": exc.detail.model_dump()})
+        return JSONResponse(status_code=exc.status_code, content=exc.detail.model_dump())

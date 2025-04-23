@@ -26,7 +26,7 @@ config.set_main_option("sqlalchemy.url", CONFIG.database_url)
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 from app.models.user import User
-from app.core.database import Base
+from app.db.database import Base
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

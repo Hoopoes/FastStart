@@ -3,7 +3,7 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 
 from config import CONFIG
-from app.core.logger import LOG
+from app.utils.logger import LOG
 
 
 DATABASE_URL = CONFIG.database_url  # For local SQLite file
