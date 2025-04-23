@@ -3,10 +3,10 @@ import uuid
 from fastapi import APIRouter, Query
 
 
-from app.core.logger import LOG
+from app.utils.logger import LOG
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
-from app.core.log_handler import set_log_context
+from app.utils.log_handler import set_log_context
 from app.errors.error_docs import UserResponseDoc
 from app.schemas.user import CreateUserDto, UsersDto
 

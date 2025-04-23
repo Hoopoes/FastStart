@@ -3,13 +3,13 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.core.logger import LOG
+from app.utils.logger import LOG
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
 
 
 
-def register_error_handlers(app: FastAPI):
+def exception_handler(app: FastAPI):
     # Validation error handler
     @app.exception_handler(RequestValidationError)
     async def _validation_exception(request: Request, exc: RequestValidationError):

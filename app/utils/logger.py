@@ -3,7 +3,7 @@ import logging
 from config import CONFIG
 from logging.config import dictConfig
 
-from app.core.log_handler import LOG_DIRECTORY
+from app.utils.log_handler import LOG_DIRECTORY
 
 # Logging configuration
 log_config = {
@@ -11,12 +11,12 @@ log_config = {
     "disable_existing_loggers": False,
     "formatters": {
         "json": {
-            "()": "app.core.log_handler.JsonFormatter",  # JSON logs for Grafana Loki
+            "()": "app.utils.log_handler.JsonFormatter",  # JSON logs for Grafana Loki
         },
     },
     "filters": {
         "context_filter": {
-            "()": "app.core.log_handler.ContextLogFilter"
+            "()": "app.utils.log_handler.ContextLogFilter"
         }
     },
     "handlers": {
@@ -27,7 +27,7 @@ log_config = {
             "filters": ["context_filter"]
         },
         "file": {
-            "class": "app.core.log_handler.CustomTimedRotatingFileHandler",
+            "class": "app.utils.log_handler.CustomTimedRotatingFileHandler",
             "formatter": "json",
             "filename": os.path.join(LOG_DIRECTORY, "today.log"),
             "when": "midnight",
