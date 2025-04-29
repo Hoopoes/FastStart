@@ -17,8 +17,8 @@ model User {
   user_id   String   @unique 
   name      String?
   user_type String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 
@@ -39,8 +39,8 @@ model User {
 //   user_id   String   @unique @db.VarChar(10)
 //   name      String?  @db.VarChar(30)
 //   user_type UserType
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt
 // }
 
 
@@ -63,6 +63,6 @@ model User {
 //   user_id   String   @unique 
 //   name      String?  
 //   user_type UserType
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt
 // }
