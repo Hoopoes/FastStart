@@ -6,14 +6,6 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <script id="logData" type="application/json">
-        {
-            "date": @{date},
-            "logs": @{logs},
-            "headers": @{header_list}
-        }
-    </script>
-
     <script>
         function filterLogs() {
             const input = document.getElementById("logFilter").value.toLowerCase();
@@ -49,18 +41,34 @@
             location.reload();
         }
 
-        function fetchLogs() {
-            const selectedDate = document.getElementById("logDate").value;
-            if (!selectedDate) {
-                alert("Please select a date.");
-                return;
+        async function fetchLogs(selectedDate = null) {
+            let logDate = selectedDate || localStorage.getItem("selectedDate");
+
+            if (!logDate) {
+                const today = new Date();
+                logDate = today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
             }
-            const logDate = selectedDate.replace(/-/g, '');
-            // Get the full current URL path dynamically
+
+            localStorage.setItem("selectedDate", logDate); // Save for later reloads
+
+            const formattedDate = logDate.replace(/-/g, '');
             const fullPath = window.location.href.split('?')[0];
-            // Construct the URL by replacing any existing date or query part
-            const url = `${fullPath}?date=${logDate}`;
-            window.location.href = url;
+            const url = `${fullPath}/data?date=${formattedDate}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`Response status: ${response.status}`);
+                const data = await response.json();
+
+                const logs = data.logs;
+                const headerList = data.columns;
+
+                generateHeader(headerList);
+                generateRecords(headerList, logs);
+                setDate(logDate);
+            } catch (error) {
+                console.error("Failed to fetch logs:", error);
+            }
         }
 
 
@@ -128,28 +136,18 @@
 
         function setDate(date) {
             const h1 = document.getElementById("log-heading");
-            h1.innerHTML = `${h1.innerHTML} ${date}`
-            // Set default selected date
+            h1.innerHTML = `Logs for ${date}`;
             document.getElementById("logDate").value = date;
         }
 
 
         window.onload = function () {
-            try {
-                // Get JSON safely from the script tag
-                const logDataElement = document.getElementById("logData").textContent;
-                const logData = JSON.parse(logDataElement);
-
-                const date = logData.date;
-                const logs = logData.logs;
-                const headerList = logData.headers;
-
-                generateHeader(headerList);
-                generateRecords(headerList, logs);
-                setDate(date);
-            } catch (error) {
-                console.error("Error parsing JSON:", error);
+            let savedDate = localStorage.getItem("selectedDate");
+            if (!savedDate) {
+                const today = new Date();
+                savedDate = today.toISOString().split('T')[0];
             }
+            fetchLogs(savedDate);
         };
 
     </script>
@@ -171,7 +169,7 @@
             <h1 id=log-heading class='text-2xl font-bold text-white'>Logs for</h1>
             <div class='flex items-center gap-2'>
                 <input type='date' id='logDate' class='p-2 bg-gray-700 text-gray-300 border border-gray-600 rounded'>
-                <button onclick='fetchLogs()'
+                <button onclick="fetchLogs(document.getElementById('logDate').value)"
                     class='flex items-center gap-1 p-2 bg-blue-600 text-white rounded hover:bg-blue-700'>
                     <span class="material-icons">sync</span> Fetch Logs
                 </button>
@@ -180,7 +178,8 @@
         <div class='flex items-center gap-4 mt-4'>
             <input type='text' id='logFilter' onkeyup='filterLogs()' placeholder='Search logs...'
                 class='p-2 w-1/3 border border-gray-600 rounded bg-gray-700 text-gray-300'>
-            <button onclick='refreshPage()' class='p-2 bg-green-600 text-white rounded hover:bg-green-700'>
+            <button onclick="fetchLogs(localStorage.getItem('selectedDate'))" 
+                class='p-2 bg-green-600 text-white rounded hover:bg-green-700'>
                 <span class="material-icons">refresh</span>
             </button>
         </div>
