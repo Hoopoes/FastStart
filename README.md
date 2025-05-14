@@ -77,7 +77,6 @@ poetry run python main.py
  ┃ ┗ 🐍server.py
  ┣ 📂docs
  ┣ 📂logs
- ┣ 📂tests
  ┣ 🗝️.env
  ┣ 🗝️.env.example
  ┣ 📜.gitattributes
@@ -106,8 +105,6 @@ poetry run python main.py
   - **docs**: Project documentation.
 
   - **logs**: Log files.
-
-  - **tests**: Unit and integration tests.
 
   - **.env**: Secret Environment configuration that is ignored by Git.
 
