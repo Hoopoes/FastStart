@@ -28,9 +28,9 @@
 | Branch Name                                                        | Description                                                                    |
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | [minimal](https://github.com/Hoopoes/FastStart/tree/minimal)       | A lightweight, stripped-down FastAPI starter with only essential boilerplate.     |
-| [base](https://github.com/Hoopoes/FastStart/tree/base)             | A well-organized and scalable FastAPI project structure with integrated features to kickstart your development. |
-| [sqlalchemy](https://github.com/Hoopoes/FastStart/tree/sqlalchemy) | A base structure with Async SQLAlchemy integrated, extending the core functionality. |
-| [log-viewer](https://github.com/Hoopoes/FastStart/tree/log-viewer) | A base structure with an integrated log viewer for inspecting application logs |
+| [base](https://github.com/Hoopoes/FastStart/tree/base)             | Builds on `minimal` by adding improved OpenAPI documentation, better error handling, and common middleware utilities. |
+| [sqlalchemy](https://github.com/Hoopoes/FastStart/tree/sqlalchemy) | Extends `base` with integrated support for Async SQLAlchemy to handle asynchronous database operations efficiently. |
+| [log-viewer](https://github.com/Hoopoes/FastStart/tree/log-viewer) | Extends `base` with a built-in log viewer for inspecting application logs directly from the browser. |
 
 ## 🚀Getting Started
 
