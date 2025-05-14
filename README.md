@@ -27,10 +27,10 @@
 
 | Branch Name                                                        | Description                                                                    |
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| [base](https://github.com/Hoopoes/FastStart/tree/base)             | A well-organized and scalable FastAPI project structure with integrated features to kickstart your development. |
 | [minimal](https://github.com/Hoopoes/FastStart/tree/minimal)       | A lightweight, stripped-down FastAPI starter with only essential boilerplate.     |
-| [prisma-orm](https://github.com/Hoopoes/FastStart/tree/prisma-orm) | A base structure with Prisma ORM integrated, extending the core functionality. |
+| [base](https://github.com/Hoopoes/FastStart/tree/base)             | A well-organized and scalable FastAPI project structure with integrated features to kickstart your development. |
 | [sqlalchemy](https://github.com/Hoopoes/FastStart/tree/sqlalchemy) | A base structure with Async SQLAlchemy integrated, extending the core functionality. |
+| [log-viewer](https://github.com/Hoopoes/FastStart/tree/log-viewer) | A base structure with an integrated log viewer for inspecting application logs |
 
 ## 🚀Getting Started
 
@@ -47,7 +47,7 @@ git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
 
 ## 📂 Log Viewer
 
-**FastStart** also includes a **Log Viewer** for easy access to logs and error tracking.
+**FastStart** also includes a [**Log Viewer**](https://github.com/Hoopoes/FastStart/tree/log-viewer) for easy access to logs and error tracking.
 
 ![Logger Viewer](images/log_viewer.png)
 
