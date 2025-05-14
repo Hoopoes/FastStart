@@ -63,7 +63,6 @@ poetry run python main.py
 📦FastAPI-Base
  ┣ 📂app
  ┃ ┣ 📂errors
- ┃ ┣ 📂jobs
  ┃ ┣ 📂middlewares
  ┃ ┣ 📂models
  ┃ ┣ 📂routes
@@ -96,7 +95,6 @@ poetry run python main.py
   
   - **app**: Main application directory.
     - **errors**: Custom error response definitions, including error documentation for swagger.
-    - **jobs**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middlewares**: Custom middleware for request/response processing and exception handling.
     - **models**: Database models & core application objects.
     - **routes**: API endpoints and route handlers.
