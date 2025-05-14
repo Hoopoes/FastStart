@@ -92,7 +92,7 @@ poetry run python main.py
 ## Project Structure
 
 ```
-📦FastAPI-SQLAlchemy
+📦Project
  ┣ 📂app
  ┃ ┣ 📂db
  ┃ ┣ 📂errors
