@@ -7,6 +7,7 @@ from app.utils.logger import LOG
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
 from app.utils.log_handler import set_log_context
+from app.errors.error_docs import UserResponseDoc
 from app.schemas.user import CreateUserDto, UsersDto
 
 
@@ -39,7 +40,7 @@ async def fetch_users() -> UsersDto:
         raise ex
     
 
-@user_router.post('/create')
+@user_router.post('/create', responses=UserResponseDoc.create)
 async def create_user(req: CreateUserDto) -> BaseResponseDto:
 
     # Set log context for this API function
@@ -61,7 +62,7 @@ async def create_user(req: CreateUserDto) -> BaseResponseDto:
     except Exception as ex:
         raise ex
 
-@user_router.delete('/delete')
+@user_router.delete('/delete', responses=UserResponseDoc.delete)
 async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment")) -> BaseResponseDto:
 
     # Set log context for this API function
