@@ -42,7 +42,7 @@ git clone --single-branch -b <BRANCH_NAME> https://github.com/Hoopoes/FastStart.
 ```
 
 ```bash
-git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
+git clone --single-branch -b minimal https://github.com/Hoopoes/FastStart.git
 ```
 
 ## 📂 Log Viewer
