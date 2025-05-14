@@ -2,7 +2,7 @@
   <img src="docs/fastapi.svg" alt="fastapi-logo" width="100">
 </p>
 
-# FastAPI: Base Structure
+# FastAPI: Log Viewer Structure
 
 This repository's branch serves as a modular and flexible starting point for developing backend microservices with FastAPI.
 
@@ -20,7 +20,7 @@ Before setting up this project, ensure you have a basic understanding of the fol
 1. Clone the Repository
 
 ```bash
-git clone --single-branch -b base https://github.com/Hoopoes/FastStart.git
+git clone --single-branch -b log-viewer https://github.com/Hoopoes/FastStart.git
 ```
 
 2. Create a Virtual Environment (Optional)
@@ -73,6 +73,7 @@ poetry run python main.py
  ┃ ┃ ┗ 🐍route.py
  ┃ ┣ 📂schemas
  ┃ ┣ 📂services
+ ┃ ┣ 📂templates
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
  ┣ 📂docs
