@@ -60,7 +60,7 @@ poetry run python main.py
 ## Project Structure
 
 ```
-📦FastAPI-Minimal
+📦Project
  ┣ 📂app
  ┃ ┣ 📂errors
  ┃ ┣ 📂middlewares
