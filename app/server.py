@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 from config import CONFIG
-from app.jobs.cron_job import cron_job
 from app.routes.route import API_ROUTER
 from app.db.database import init_db, close_db
 from app.errors.error_docs import GLOBAL_RESPONSES
@@ -31,9 +30,10 @@ def make_middleware() -> list[Middleware]:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Code to run *before* the application starts (e.g., initialize DB, start background tasks)
     await init_db()
-    await cron_job()
     yield
+    # Code to run *after* the application shuts down (e.g., cleanup, close connections)
     await close_db()
 
 

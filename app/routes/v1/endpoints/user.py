@@ -26,7 +26,7 @@ async def fetch_users(db: AsyncSession = Depends(get_db)) -> UsersDto:
         # Attach custom data to the log entry using 'extra'
         LOG.debug("user list", extra={"obj": [_.model_dump() for _ in users]})
 
-        return UsersDto(code="SUCCESS", message="Success", users=users)
+        return UsersDto(users=users)
 
     except Exception as ex:
         raise ex

@@ -96,7 +96,6 @@ poetry run python main.py
  ┣ 📂app
  ┃ ┣ 📂db
  ┃ ┣ 📂errors
- ┃ ┣ 📂jobs
  ┃ ┣ 📂middlewares
  ┃ ┣ 📂models
  ┃ ┣ 📂routes
@@ -107,14 +106,12 @@ poetry run python main.py
  ┃ ┃ ┗ 🐍route.py
  ┃ ┣ 📂schemas
  ┃ ┣ 📂services
- ┃ ┣ 📂templates
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
  ┣ 📂db
  ┣ 📂docs
  ┣ 📂logs
  ┣ 📂alembic
- ┣ 📂tests
  ┣ 🗝️.env
  ┣ 🗝️.env.example
  ┣ 📜.gitattributes
@@ -133,7 +130,6 @@ poetry run python main.py
   - **app**: Main application directory.
     - **db**: Database configuration and connection setup (e.g. engine, session, initialization).
     - **errors**: Custom error response definitions, including error documentation for swagger.
-    - **jobs**: Background tasks, such as cron jobs or S3 bucket tasks.
     - **middlewares**: Custom middleware for request/response processing and exception handling.
     - **models**: Database models & core application objects.
     - **routes**: API endpoints and route handlers.
@@ -152,13 +148,11 @@ poetry run python main.py
   - **alembic**: Alembic Migrations files.
     - `env.py`: Configures DB connection and runs migrations.
 
-  - **tests**: Unit and integration tests.
-
   - **.env**: Secret Environment configuration that is ignored by Git.
 
   - **.env.example**: Example environment configuration file that is not ignored by Git.
 
-  - **alembic.py**: Alembic config file for database connection, migration paths, and settings.
+  - **alembic.ini**: Alembic config file for database connection, migration paths, and settings.
 
   - **config.py**: Project configurations, such as loading environment keys.
 

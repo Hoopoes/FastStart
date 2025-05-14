@@ -26,3 +26,6 @@ models/*.onnx
 
 # Visual Studio Code
 .vscode/
+
+# Cert
+*.pem

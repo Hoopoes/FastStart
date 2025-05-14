@@ -2,8 +2,6 @@ from typing import Literal
 from pydantic import BaseModel, Field
 from app.models.user import UserSubFields
 
-from app.schemas.base import BaseResponseDto
-
 
 
 class CreateUserDto(BaseModel):
@@ -11,5 +9,5 @@ class CreateUserDto(BaseModel):
     name: str = Field(..., max_length=30, description="user's name")
     user_id: str = Field(..., max_length=10, description="user id assignment")
 
-class UsersDto(BaseResponseDto):
+class UsersDto(BaseModel):
     users: list[UserSubFields]
