@@ -33,7 +33,7 @@ async def fetch_users() -> UsersDto:
         # Attach custom data to the log entry using 'extra'
         LOG.debug("user list", extra={"obj": users})
 
-        return UsersDto(code="SUCCESS", message="Success", users=users)
+        return UsersDto(users=users)
 
     except Exception as ex:
         raise ex

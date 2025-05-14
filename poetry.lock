@@ -113,14 +113,14 @@ idna = ">=2.0.0"
 
 [[package]]
 name = "fastapi"
-version = "0.115.11"
+version = "0.115.12"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "fastapi-0.115.11-py3-none-any.whl", hash = "sha256:32e1541b7b74602e4ef4a0260ecaf3aadf9d4f19590bba3e1bf2ac4666aa2c64"},
-    {file = "fastapi-0.115.11.tar.gz", hash = "sha256:cc81f03f688678b92600a65a5e618b93592c65005db37157147204d8924bf94f"},
+    {file = "fastapi-0.115.12-py3-none-any.whl", hash = "sha256:e94613d6c05e27be7ffebdd6ea5f388112e5e430c8f7d6494a9d1d88d43e814d"},
+    {file = "fastapi-0.115.12.tar.gz", hash = "sha256:1e2c2a2646905f9e83d32f04a3f86aff4a286669c6c950ca95b5fd68c2602681"},
 ]
 
 [package.dependencies]
@@ -165,7 +165,6 @@ description = "WSGI HTTP Server for UNIX"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
-markers = "sys_platform == \"linux\""
 files = [
     {file = "gunicorn-23.0.0-py3-none-any.whl", hash = "sha256:ec400d38950de4dfd418cff8328b2c8faed0edb0d517d3394e457c317908ca4d"},
     {file = "gunicorn-23.0.0.tar.gz", hash = "sha256:f014447a0101dc57e294f6c18ca6b40227a4c90e9bdb586042628030cba004ec"},
@@ -444,22 +443,9 @@ description = "Core utilities for Python packages"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "sys_platform == \"linux\""
 files = [
     {file = "packaging-24.2-py3-none-any.whl", hash = "sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759"},
     {file = "packaging-24.2.tar.gz", hash = "sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f"},
-]
-
-[[package]]
-name = "pyclean"
-version = "3.1.0"
-description = "Pure Python cross-platform pyclean. Clean up your Python bytecode."
-optional = false
-python-versions = ">=3.5"
-groups = ["dev"]
-files = [
-    {file = "pyclean-3.1.0-py3-none-any.whl", hash = "sha256:46652f7416816924cab565cd045d0c341237aced0368a3727d66b5192c16728c"},
-    {file = "pyclean-3.1.0.tar.gz", hash = "sha256:d23fa900558696e08c79401c79f242fe6f7f38fd58ccd035f875a01c5bc7a6fc"},
 ]
 
 [[package]]
@@ -811,14 +797,14 @@ files = [
 
 [[package]]
 name = "uvicorn"
-version = "0.34.0"
+version = "0.34.2"
 description = "The lightning-fast ASGI server."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "uvicorn-0.34.0-py3-none-any.whl", hash = "sha256:023dc038422502fa28a09c7a30bf2b6991512da7dcdb8fd35fe57cfc154126f4"},
-    {file = "uvicorn-0.34.0.tar.gz", hash = "sha256:404051050cd7e905de2c9a7e61790943440b3416f49cb409f965d9dcd0fa73e9"},
+    {file = "uvicorn-0.34.2-py3-none-any.whl", hash = "sha256:deb49af569084536d269fe0a6d67e3754f104cf03aba7c11c40f01aadf33c403"},
+    {file = "uvicorn-0.34.2.tar.gz", hash = "sha256:0e929828f6186353a80b58ea719861d2629d766293b6d19baf086ba31d4f3328"},
 ]
 
 [package.dependencies]
@@ -1054,4 +1040,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.12"
-content-hash = "e1922ff51dcea1b2e4224dcd5019609e455f42d1b130b001581ed0470e889a25"
+content-hash = "c1867497ccc0e0e822a6eb41f0b2c5708dc9fe27e2724537bf61a787f292d011"

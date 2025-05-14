@@ -30,7 +30,9 @@ def make_middleware() -> list[Middleware]:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Code to run *before* the application starts (e.g., initialize DB, start background tasks)
     yield
+    # Code to run *after* the application shuts down (e.g., cleanup, close connections)
 
 
 def create_app() -> FastAPI:
