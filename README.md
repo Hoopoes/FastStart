@@ -73,7 +73,6 @@ poetry run python main.py
  ┃ ┃ ┗ 🐍route.py
  ┃ ┣ 📂schemas
  ┃ ┣ 📂services
- ┃ ┣ 📂templates
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
  ┣ 📂docs
