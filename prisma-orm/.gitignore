@@ -1,0 +1,28 @@
+# Python cache
+__pycache__/
+
+# Poetry
+.venv
+
+# log files
+logs/*.log
+
+# Temporary files
+temp
+
+# Sqlite db
+db/*.db
+db/*.db-journal
+
+# Environment file
+.env
+
+# Model files
+*.pt
+models/**/*.xml
+models/**/*.bin
+models/**/*.yaml
+models/*.onnx
+
+# Visual Studio Code
+.vscode/

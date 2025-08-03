@@ -1,0 +1,1 @@
+ALL docs will be here, and this folder will be in gitignore
