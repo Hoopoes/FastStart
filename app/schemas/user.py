@@ -1,6 +1,6 @@
 from typing import Literal
 from pydantic import BaseModel, Field
-from app.models.user import UserSubFields
+from app.models.db_models import UserSubFields
 
 
 

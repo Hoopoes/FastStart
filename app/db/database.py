@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 
 
 from config import CONFIG
-from app.models.user import Base
+from app.models.db_models import Base
 from app.utils.logger import LOG
 
 

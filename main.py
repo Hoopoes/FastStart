@@ -2,9 +2,6 @@ import argparse
 
 def main(args):
     import uvicorn
-    import subprocess
-    
-    subprocess.run(["alembic", "upgrade", "head"])
     
     uvicorn.run(
         app="app.server:app",

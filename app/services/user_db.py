@@ -4,8 +4,8 @@ from typing import Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.user import User
-from app.models.user import UserSubFields
+from app.models.db_models import User
+from app.models.db_models import UserSubFields
 
 
 async def create(db: AsyncSession, user_id: str, name: str, user_type: str):
@@ -39,8 +39,6 @@ async def delete(db: AsyncSession, user_id: str) -> Optional[User]:
     return user
     
 async def fetch_all(db: AsyncSession) -> list[UserSubFields]:
-    result = await db.execute(
-        select(User.id, User.user_id, User.name, User.user_type)
-    )
-    users = [UserSubFields.model_validate(i) for i in result.mappings().all()]
+    result = await db.execute(select(User))
+    users = [UserSubFields.model_validate(row) for row in result.scalars()]
     return users
