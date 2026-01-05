@@ -1,5 +1,5 @@
 [project]
-name = "fastapi-minimal"
+name = "fastapi-base"
 version = "1.0.0"
 description = "Base file structure of fast api"
 license = "MIT"
