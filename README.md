@@ -61,6 +61,5 @@ To access the Log Viewer, simply navigate to the appropriate route in the applic
 
 For any questions or feedback, please reach out to:
 - Muhammad Umar Anzar - omer.anzar2@gmail.com
-- Mubashir Ahmed Siddiqui - mubashirsidiki@gmail.com
 
 Or open an issue on GitHub.
