@@ -3,7 +3,7 @@
 ## Developer Setup
 - Install `uv` (if not present): `pip install uv` or follow https://astral.sh/uv installation guide.
 - Sync dependencies (incl. dev): `uv sync --all-groups`.
-- Activate virtual environment (uv creates `.venv` automatically.
+- Activate virtual environment (uv creates `.venv` automatically).
 - Ensure `.env` is set up from `.env.example`.
 
 ## Quick Reference
