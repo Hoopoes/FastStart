@@ -8,11 +8,9 @@ This repository's branch serves as a modular and flexible starting point for dev
 
 ## Prerequisites
 
-Before setting up this project, ensure you have a basic understanding of the following tools:
+Before setting up this project, you should be familiar with:
 
-- **[Poetry](https://python-poetry.org)**: Dependency management tool (like npm for Node.js).
-
-- **[Pyenv](https://github.com/pyenv/pyenv)**: Manages multiple Python versions. For windows [pyenv-win](https://github.com/pyenv-win/pyenv-win).
+- **[uv](https://docs.astral.sh/uv)**: A fast tool for managing Python packages, environments, and project dependencies.
 
 
 ## Setup
@@ -21,41 +19,20 @@ Before setting up this project, ensure you have a basic understanding of the fol
 
 ```bash
 git clone --single-branch -b minimal https://github.com/Hoopoes/FastStart.git
+cd FastStart
 ```
 
-2. Create a Virtual Environment (Optional)
-
-Set up a Python virtual environment to manage your project’s dependencies independently. You can use a tool like pyenv or conda for this purpose
-
-3. Install Poetry
+2. Install Dependencies
 
 ```bash
-pip install poetry
+uv sync
 ```
 
-4. Install Project Dependencies
-
-Install project's dependencies listed in the `pyproject.toml`.
+3. Run the Application
 
 ```bash
-poetry install
+uv run python main.py
 ```
-
-5. Run `main.py`
-
-Run the main application:
-
-```bash
-poetry shell
-python main.py
-```
-
-Or, if you prefer to use Poetry:
-
-```bash
-poetry run python main.py
-```
-
 
 ## Project Structure
 
@@ -83,7 +60,7 @@ poetry run python main.py
  ┣ 📜.gitignore
  ┣ 🐍config.py
  ┣ 🐍main.py
- ┣ 🔒poetry.lock
+ ┣ 🔒uv.lock
  ┗ ⚙️pyproject.toml
 ```
 
@@ -114,4 +91,4 @@ poetry run python main.py
 
   - **main.py**: Application entry point.
 
-  - **poetry.lock, pyproject.toml**: Dependency management.
+  - **uv.lock, pyproject.toml**: Dependency management.
