@@ -1,3 +1,8 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
 [project]
 name = "fastapi-base"
 version = "1.0.0"
@@ -15,6 +20,10 @@ dependencies = [
     "gunicorn>=25.3.0",
     "uvicorn[standard]>=0.46.0",
 ]
+
+[tool.poetry]
+package-mode = false
+
 
 [project.urls]
 Repository = "https://github.com/Hoopoes/FastStart"
