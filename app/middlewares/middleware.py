@@ -1,7 +1,9 @@
 import time
+import uuid
 from fastapi import FastAPI, Request, Response
 from app.middlewares.usage import usage_middleware
 
+from app.utils.log_handler import set_log_context
 from app.utils.logger import LOG
 
 
@@ -10,12 +12,14 @@ def middleware_handler(app: FastAPI):
     @app.middleware("http")
     async def _handler(request: Request, call_next):
 
+        # Start time recording after the method check
+        start_time = time.perf_counter()
+
         # Get HTTP method and route
         http_method = request.method
         route = request.scope.get("path", "Unknown")
 
-        # Start time recording after the method check
-        start_time = time.perf_counter()
+        set_log_context(uuid=str(uuid.uuid4()).replace("-", ""), endpoint=route)
 
         # Process the request and calculate the time taken
         response: Response

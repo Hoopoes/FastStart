@@ -36,7 +36,7 @@ async def fetch_users(db: AsyncSession = Depends(get_db)) -> UsersDto:
 async def create_user(req: CreateUserDto, db: AsyncSession = Depends(get_db)) -> BaseResponseDto:
 
     # Set log context for this API function
-    set_log_context(user_id=req.user_id, uuid=str(uuid.uuid4()))
+    set_log_context(user_id=req.user_id)
 
     try:
         
@@ -49,7 +49,7 @@ async def create_user(req: CreateUserDto, db: AsyncSession = Depends(get_db)) ->
             raise http_error.UserIDAlreadyExist()
         
 
-        LOG.debug("User created")
+        LOG.debug("User created", extra={"obj": {"k":1}})
         return BaseResponseDto(code="SUCCESS", message="User Successfully Created")
     
     except Exception as ex:
@@ -59,7 +59,7 @@ async def create_user(req: CreateUserDto, db: AsyncSession = Depends(get_db)) ->
 async def delete_user(user_id: str = Query(..., max_length=10, description="user id assignment"), db: AsyncSession = Depends(get_db)) -> BaseResponseDto:
 
     # Set log context for this API function
-    set_log_context(user_id=user_id, uuid=str(uuid.uuid4()))
+    set_log_context(user_id=user_id)
 
     try:
 
