@@ -4,6 +4,12 @@ import logging
 from contextvars import ContextVar
 from datetime import datetime, timedelta
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+LOG_FORMAT = "json" if os.getenv("LOG_FORMAT", "json") == "json" else "logfmt"
+
 # Ensure logs directory exists
 LOG_DIRECTORY = "logs"
 os.makedirs(LOG_DIRECTORY, exist_ok=True)
@@ -13,7 +19,9 @@ os.makedirs(LOG_DIRECTORY, exist_ok=True)
 _log_context: ContextVar[dict] = ContextVar("_log_context", default={})
 
 def set_log_context(**kwargs):
-    _log_context.set(kwargs)
+    ctx = _log_context.get().copy()  
+    ctx.update(kwargs)
+    _log_context.set(ctx)
 
 def get_log_context():
     return _log_context.get()
@@ -61,7 +69,6 @@ class JsonFormatter(logging.Formatter):
         log_record = {
             "level": record.levelname,
             "time": self.formatTime(record, "%Y-%m-%dT%H:%M:%SZ"),
-            "msg": record.getMessage(),
             # "name": record.name,
             "module": record.module,
             # "funcName": record.funcName,
@@ -82,6 +89,28 @@ class JsonFormatter(logging.Formatter):
             if key not in standard_attrs
         }
 
+        log_record.update({"msg": record.getMessage()})
         log_record.update(extra_fields)
 
-        return json.dumps(log_record, ensure_ascii=False)#, indent=2)
+        if LOG_FORMAT == "json":
+            return json.dumps(log_record, ensure_ascii=False)#, indent=2)
+        else:
+            return to_logfmt(log_record)
+        
+def to_logfmt(log_record: dict) -> str:
+    parts = []
+
+    for k, v in log_record.items():
+        if isinstance(v, (dict, list)):
+            v = json.dumps(v, ensure_ascii=False)
+
+        else:
+            v = str(v)
+
+        # escape spaces by wrapping in quotes
+        if " " in v or "=" in v:
+            v = f'"{v}"'
+
+        parts.append(f"{k}={v}")
+
+    return " ".join(parts)
