@@ -8,11 +8,9 @@ This repository's branch serves as a modular and flexible starting point for dev
 
 ## Prerequisites
 
-Before setting up this project, ensure you have a basic understanding of the following tools:
+Before setting up this project, you should be familiar with:
 
-- **[Poetry](https://python-poetry.org)**: Dependency management tool (like npm for Node.js).
-
-- **[Pyenv](https://github.com/pyenv/pyenv)**: Manages multiple Python versions. For windows [pyenv-win](https://github.com/pyenv-win/pyenv-win).
+- **[uv](https://docs.astral.sh/uv)**: A fast tool for managing Python packages, environments, and project dependencies.
 
 - **[Alembic](https://alembic.sqlalchemy.org)**: Lightweight database migration tool for SQLAlchemy.
 
@@ -23,71 +21,47 @@ Before setting up this project, ensure you have a basic understanding of the fol
 
 ```bash
 git clone --single-branch -b sqlalchemy https://github.com/Hoopoes/FastStart.git
+cd FastStart
 ```
 
-2. Create a Virtual Environment (Optional)
-
-Set up a Python virtual environment to manage your project’s dependencies independently. You can use a tool like pyenv or conda for this purpose
-
-3. Install Poetry
+2. Install Dependencies
 
 ```bash
-pip install poetry
+uv sync
 ```
 
-4. Install Project Dependencies
-
-Install project's dependencies listed in the `pyproject.toml`.
-
-```bash
-poetry install
-```
-
-5. Initialize Alembic
+3. Initialize Alembic
 
 (Optional) Skip this if the alembic/ folder already exists
 
 ```bash
-poetry shell
-alembic init -t async alembic
+uv run alembic init -t async alembic
 ```
 This creates the `alembic` folder and a preconfigured async-compatible `env.py`.
 
 
-6. Create and Apply Initial Migration
+4. Create and Apply Initial Migration
 
 Edit `alembic/env.py` to import your models and use the correct `SQLALCHEMY_DATABASE_URL` from your settings.
 
 ```bash
 # Create initial migration from SQLAlchemy models
-alembic revision --autogenerate -m "Initial tables"
+uv run alembic revision --autogenerate -m "Initial tables"
 ```
 
-
-7. Apply Existing Migrations
+5. Apply Existing Migrations
 
 If you already have migrations and just need to apply them (without generating new ones), you can use:
 ```bash
-alembic upgrade head
+uv run alembic upgrade head
 ```
 This will apply any pending migrations to your SQL database.
 
-
-8. Run `main.py`
-
-Run the main application:
+6. Run the Application
 
 ```bash
-poetry shell
-python main.py
+uv run python main.py
 ```
-
-Or, if you prefer to use Poetry:
-
-```bash
-poetry run python main.py
-```
-
 
 ## Project Structure
 
@@ -119,7 +93,7 @@ poetry run python main.py
  ┣ 📜alembic.ini
  ┣ 🐍config.py
  ┣ 🐍main.py
- ┣ 🔒poetry.lock
+ ┣ 🔒uv.lock
  ┗ ⚙️pyproject.toml
 ```
 
@@ -158,4 +132,4 @@ poetry run python main.py
 
   - **main.py**: Application entry point.
 
-  - **poetry.lock, pyproject.toml**: Dependency management.
+  - **uv.lock, pyproject.toml**: Dependency management.
