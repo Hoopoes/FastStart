@@ -18,12 +18,10 @@ class ConfigClass(BaseModel):
     description: str
     version: str
     root_path: Optional[str]
-    api_key: Optional[str]
 
 CONFIG = ConfigClass(
     app_name = name,
     description = description,
     version = version,
     root_path = getenv("ROOT_PATH"),
-    api_key = getenv("API_KEY") if getenv("API_KEY") else None
 )
