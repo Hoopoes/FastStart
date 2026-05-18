@@ -7,6 +7,7 @@
 [![Stars](https://img.shields.io/github/stars/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/stargazers)
 [![Forks](https://img.shields.io/github/forks/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/network/members)
 [![Issues](https://img.shields.io/github/issues/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/issues)
+![Closed Issues](https://img.shields.io/github/issues-closed/Hoopoes/FastStart?style=flat-square&labelColor=343b41&color=blue)
 [![Pull Requests](https://img.shields.io/github/issues-pr/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/pulls)
 [![Contributors](https://img.shields.io/github/contributors/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/graphs/contributors)
 
