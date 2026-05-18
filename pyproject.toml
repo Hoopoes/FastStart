@@ -1,7 +1,7 @@
 [project]
-name = "fastapi-sqlalchemy"
+name = "faststart-sqlalchemy"
 version = "1.0.0"
-description = "Base file structure of fast api"
+description = "Base file structure of fastAPI"
 license = "MIT"
 authors = [
     {name = "umar-anzar", email = "omer.anzar2@gmail.com"}
