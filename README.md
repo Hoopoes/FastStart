@@ -29,9 +29,8 @@
 
 
 ## 📁 Branch Structure (`main`)
-The `main` branch is a modular and flexible starting point for developing backend microservices with FastAPI.
 
-## 🚀 Getting Started
+### 🚀 Getting Started
 
 To get started with the FastAPI Starter Kit, follow the steps:
 
