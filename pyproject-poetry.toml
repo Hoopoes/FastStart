@@ -1,0 +1,34 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[project]
+name = "faststart-main"
+version = "1.0.0"
+description = "Main file structure of fastAPI"
+license = "MIT"
+authors = [
+    {name = "umar-anzar", email = "omer.anzar2@gmail.com"}
+]
+readme = "README.md"
+
+
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "fastapi[standard]>=0.136.1",
+    "gunicorn>=25.3.0",
+    "uvicorn[standard]>=0.46.0",
+]
+
+[tool.poetry]
+package-mode = false
+
+
+[project.urls]
+Repository = "https://github.com/Hoopoes/FastStart"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.12",
+]
