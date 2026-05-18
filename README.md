@@ -2,18 +2,45 @@
   <img src="docs/fastapi.svg" alt="fastapi-logo" width="100">
 </p>
 
-# FastAPI: Log Viewer Structure
+# FastStart: A FastAPI Starter Kit
+[![License](https://img.shields.io/github/license/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/blob/main/LICENSE)
+[![Stars](https://img.shields.io/github/stars/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/stargazers)
+[![Forks](https://img.shields.io/github/forks/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/network/members)
+[![Issues](https://img.shields.io/github/issues/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/pulls)
+[![Contributors](https://img.shields.io/github/contributors/Hoopoes/FastStart?style=flat-square&labelColor=343b41)](https://github.com/Hoopoes/FastStart/graphs/contributors)
 
-This repository's branch serves as a modular and flexible starting point for developing backend microservices with FastAPI.
+**FastStart** is a modular and flexible starting point for building backend microservices with FastAPI. This repository provides a robust base structure with various extensions and configurations to help you get started quickly and efficiently.
 
-## Prerequisites
+## ✨ Features
+
+- **Multiple Variations**: Different branches provide various features and integrations (see Branches table below).
+- **Extensible**: Easily add and customize features as per your project requirements.
+- **Best Practices**: Follow industry best practices for code organization, security, and performance.
+
+## 🌱 Branches
+
+| Branch Name                                                        | Description                                                                    |
+|--------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| [main](https://github.com/Hoopoes/FastStart)       | A lightweight, stripped-down FastAPI starter with only essential boilerplate.     |
+| [base](https://github.com/Hoopoes/FastStart/tree/base)             | Builds on `main` by adding improved OpenAPI documentation, better error handling, and common middleware utilities. |
+| [sqlalchemy](https://github.com/Hoopoes/FastStart/tree/sqlalchemy) | Extends `base` with integrated support for Async SQLAlchemy to handle asynchronous database operations efficiently. |
+| [log-viewer](https://github.com/Hoopoes/FastStart/tree/log-viewer) | Extends `base` with a built-in log viewer for inspecting application logs directly from the browser. |
+
+
+## 📁 Branch Structure (`log-viewer`)
+
+### 🚀 Getting Started
+
+To get started with the FastAPI Starter Kit, follow the steps:
+
+### Prerequisites
 
 Before setting up this project, you should be familiar with:
 
 - **[uv](https://docs.astral.sh/uv)**: A fast tool for managing Python packages, environments, and project dependencies.
 
-
-## Setup
+### Setup
 
 1. Clone the Repository
 
@@ -34,7 +61,7 @@ uv sync
 uv run python main.py
 ```
 
-## Project Structure
+### Project Structure
 
 ```
 📦Project
@@ -93,3 +120,22 @@ uv run python main.py
   - **main.py**: Application entry point.
 
   - **uv.lock, pyproject.toml**: Dependency management.
+
+## 📂 Log Viewer (in the `log-viewer` branch)
+
+The [`log-viewer` branch](https://github.com/Hoopoes/FastStart/tree/log-viewer) adds a built-in log viewer for inspecting application logs directly from the browser.
+
+![Logger Viewer](docs/log_viewer.png)
+
+To access the Log Viewer, simply navigate to the appropriate route in the application (you may need to configure the path depending on your setup). This feature helps you monitor the logs and debug your application more effectively.
+
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Hoopoes/FastStart&type=Timeline)](https://star-history.com/#Hoopoes/FastStart&Timeline)
+
+## 📞 Contact
+
+For any questions or feedback, please reach out to:
+- Muhammad Umar Anzar - omer.anzar2@gmail.com
+
+Or open an issue on GitHub.
