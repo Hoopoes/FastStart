@@ -21,7 +21,7 @@
 
 ## Project Structure
 ```
-📦 FastStart (minimal)
+📦 FastStart
 ├─ 📂app                     # Core FastAPI package
 │   ├─ 📂errors              # Custom errors & docs
 │   ├─ 📂middlewares        # Middleware & exception handling

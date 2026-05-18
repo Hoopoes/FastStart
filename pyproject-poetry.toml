@@ -4,9 +4,9 @@ build-backend = "poetry.core.masonry.api"
 
 
 [project]
-name = "fastapi-base"
+name = "faststart-base"
 version = "1.0.0"
-description = "Base file structure of fast api"
+description = "Base file structure of fastAPI"
 license = "MIT"
 authors = [
     {name = "umar-anzar", email = "omer.anzar2@gmail.com"}
