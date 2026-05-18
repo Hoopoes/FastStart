@@ -28,7 +28,7 @@
 | [log-viewer](https://github.com/Hoopoes/FastStart/tree/log-viewer) | Extends `base` with a built-in log viewer for inspecting application logs directly from the browser. |
 
 
-## 📁 Branch Structure (`main`)
+## 📁 Branch Structure (`base`)
 
 ### 🚀 Getting Started
 
