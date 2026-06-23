@@ -16,6 +16,7 @@ dependencies = [
     "fastapi[standard]>=0.136.1",
     "gunicorn>=25.3.0",
     "sqlalchemy[asyncio]>=2.0.49",
+    "pyjwt[crypto]>=2.13.0",
     "uvicorn[standard]>=0.46.0",
 ]
 
@@ -24,5 +25,8 @@ Repository = "https://github.com/Hoopoes/FastStart"
 
 [dependency-groups]
 dev = [
+    "pyclean>=3.7.0",
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.4.0",
     "ruff>=0.15.12",
 ]
