@@ -19,9 +19,18 @@ class ConfigClass(BaseModel):
     version: str
     root_path: Optional[str]
 
+    # AUTH
+    auth_secret_key: str
+    auth_algorithm: str
+    auth_access_token_expire_min: float
+
+
 CONFIG = ConfigClass(
-    app_name = name,
-    description = description,
-    version = version,
-    root_path = getenv("ROOT_PATH"),
+    app_name=name,
+    description=description,
+    version=version,
+    root_path=getenv("ROOT_PATH"),
+    auth_secret_key=getenv("AUTH_SECRET_KEY"),
+    auth_algorithm=getenv("AUTH_ALGORITHM"),
+    auth_access_token_expire_min=getenv("AUTH_ACCESS_TOKEN_EXPIRE_MINUTES"),
 )
