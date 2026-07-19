@@ -1,8 +1,9 @@
 import os
 import logging
-from config import CONFIG
 from logging.config import dictConfig
 
+from config import CONFIG
+from app.utils.config_loader import LOG_CONFIG
 from app.utils.log_handler import LOG_DIRECTORY
 
 # Logging configuration
@@ -14,17 +15,13 @@ log_config = {
             "()": "app.utils.log_handler.JsonFormatter",  # JSON logs for Grafana Loki
         },
     },
-    "filters": {
-        "context_filter": {
-            "()": "app.utils.log_handler.ContextLogFilter"
-        }
-    },
+    "filters": {"context_filter": {"()": "app.utils.log_handler.ContextLogFilter"}},
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
             "formatter": "json",
             "stream": "ext://sys.stdout",
-            "filters": ["context_filter"]
+            "filters": ["context_filter"],
         },
         "file": {
             "class": "app.utils.log_handler.CustomTimedRotatingFileHandler",
@@ -33,13 +30,13 @@ log_config = {
             "when": "midnight",
             "backupCount": 7,
             "encoding": "utf-8",
-            "filters": ["context_filter"]
+            "filters": ["context_filter"],
         },
     },
     "loggers": {
         f"{CONFIG.app_name}": {
             "handlers": ["console", "file"],
-            "level": "DEBUG",
+            "level": LOG_CONFIG.level,
             "propagate": False,
         },
     },
