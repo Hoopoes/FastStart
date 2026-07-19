@@ -1,0 +1,49 @@
+# Logger configuration
+
+# -----------------------------------------------------------------------------
+# Logging
+# -----------------------------------------------------------------------------
+
+# Minimum log level.
+#
+# Supported values:
+#   DEBUG    -> Show all log levels.
+#   INFO     -> Show INFO, WARNING, ERROR, and CRITICAL.
+#   WARNING  -> Show WARNING, ERROR, and CRITICAL.
+#   ERROR    -> Show ERROR and CRITICAL.
+#   CRITICAL -> Show only CRITICAL.
+level = "DEBUG"
+
+# -----------------------------------------------------------------------------
+# Formatting
+# -----------------------------------------------------------------------------
+
+# Supported values:
+#
+#   json
+#     {"time":"2026-07-19T10:15:00Z","level":"INFO","msg":"User logged in"}
+#
+#   logfmt
+#     time=2026-07-19T10:15:00Z level=INFO msg="User logged in"
+#
+#   psv 
+#     2026-07-19T10:15:00Z | INFO | User logged in
+format = "psv"
+
+# Pretty-print JSON output.
+# Applies only when format = "json".
+indent = false
+indent_size = 2
+
+# -----------------------------------------------------------------------------
+# Context
+# -----------------------------------------------------------------------------
+
+[context]
+
+# Include context information in every log entry.
+enabled = true
+
+# Automatically include these fields when available.
+endpoint = true
+trace_id = true
