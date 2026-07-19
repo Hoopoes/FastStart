@@ -3,12 +3,13 @@ import uuid
 from fastapi import FastAPI, Request, Response
 from app.middlewares.usage import usage_middleware
 
+from app.utils.config_loader import LOG_CONFIG
 from app.utils.log_handler import set_log_context
 from app.utils.logger import LOG
 
 
 def middleware_handler(app: FastAPI):
-    
+
     @app.middleware("http")
     async def _handler(request: Request, call_next):
 
@@ -19,7 +20,15 @@ def middleware_handler(app: FastAPI):
         http_method = request.method
         route = request.scope.get("path", "Unknown")
 
-        set_log_context(uuid=str(uuid.uuid4()).replace("-", ""), endpoint=route)
+        kwargs = {}
+
+        if LOG_CONFIG.context.trace_id:
+            kwargs["trace_id"] = uuid.uuid4().hex
+
+        if LOG_CONFIG.context.endpoint:
+            kwargs["endpoint"] = route
+
+        set_log_context(**kwargs)
 
         # Process the request and calculate the time taken
         response: Response
