@@ -6,5 +6,5 @@ from app.routes.v1.endpoints.user import user_router
 API_V1_ROUTER = APIRouter(prefix="/v1")
 
 # Include all routers from the endpoints
-API_V1_ROUTER.include_router(user_router, prefix="/user", tags=["User"])
+API_V1_ROUTER.include_router(user_router, prefix="/users", tags=["User"])
 

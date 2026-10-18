@@ -1,12 +1,11 @@
-from fastapi.responses import JSONResponse
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.utils.logger import LOG
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
-
+from app.utils.logger import LOG
 
 
 def exception_handler(app: FastAPI):

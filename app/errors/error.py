@@ -1,6 +1,6 @@
 from typing import Literal
-from fastapi import status
-from fastapi import HTTPException
+
+from fastapi import HTTPException, status
 
 from app.schemas.base import BaseResponseDto
 
@@ -32,7 +32,7 @@ class InternalServerError(CustomHTTPException):
 
 
 ############################################
-#               Auth Errors              #
+#          Authentication Errors           #
 ############################################
 
 
@@ -41,7 +41,7 @@ class InvalidAuthentication(CustomHTTPException):
         super().__init__(
             status_code=status.HTTP_401_UNAUTHORIZED,
             code="INVALID_AUTHENTICATION",
-            message="Incorrect username or password",
+            message="Incorrect email or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
@@ -54,6 +54,11 @@ class InvalidCredentials(CustomHTTPException):
             message="Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
+
+
+############################################
+#               Token Errors               #
+############################################
 
 
 class InvalidToken(CustomHTTPException):
@@ -75,6 +80,7 @@ class InvalidTokenType(CustomHTTPException):
             message=f"Invalid token type. {required} required.",
         )
 
+
 class TokenExpired(CustomHTTPException):
     def __init__(self):
         super().__init__(
@@ -83,6 +89,57 @@ class TokenExpired(CustomHTTPException):
             message="Authentication token has expired.",
             headers={"WWW-Authenticate": "Bearer"},
         )
+
+
+############################################
+#           Authorization Errors           #
+############################################
+
+
+class AdminPrivilegeRequired(CustomHTTPException):
+    def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="ADMIN_REQUIRED",
+            message="Admin privileges required",
+        )
+
+
+class CannotDeleteSelf(CustomHTTPException):
+    def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="CANNOT_DELETE_SELF",
+            message="Admins cannot delete their own account",
+        )
+
+
+class CannotDeleteAdmin(CustomHTTPException):
+    def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="CANNOT_DELETE_ADMIN",
+            message="Admins cannot delete other admin accounts",
+        )
+
+
+class CannotReplaceSelf(CustomHTTPException):
+    def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="CANNOT_REPLACE_SELF",
+            message="Admins cannot replace their own account",
+        )
+
+
+class CannotReplaceAdmin(CustomHTTPException):
+    def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="CANNOT_REPLACE_ADMIN",
+            message="Admins cannot replace other admin accounts",
+        )
+
 
 ############################################
 #               User Errors                #

@@ -1,14 +1,14 @@
 # Python cache
 __pycache__/
 
-# Poetry
-.venv
+# Folders
+.venv/
+.playwright-mcp/
+.ruff_cache
+.pytest_cache/
 
 # log files
 logs/*.log
-
-# Temporary files
-temp
 
 # Environment file
 .env

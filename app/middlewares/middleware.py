@@ -1,5 +1,6 @@
 import time
 import uuid
+
 from fastapi import FastAPI, Request, Response
 
 from app.utils.config_loader import LOG_CONFIG
@@ -8,6 +9,15 @@ from app.utils.logger import LOG
 
 
 def middleware_handler(app: FastAPI):
+
+    @app.middleware("http")
+    async def debug_request(request: Request, call_next):
+        if request.url.path == "/health":
+            print("Client:", request.client)
+            print("User-Agent:", request.headers.get("user-agent"))
+            print("Referer:", request.headers.get("referer"))
+
+        return await call_next(request)
 
     @app.middleware("http")
     async def _handler(request: Request, call_next):

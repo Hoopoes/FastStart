@@ -1,15 +1,14 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware import Middleware
-from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 
-
-from config import CONFIG
-from app.routes.route import API_ROUTER
 from app.errors.error_docs import GLOBAL_RESPONSES
 from app.middlewares.exception import exception_handler
 from app.middlewares.middleware import middleware_handler
-
+from app.routes.route import API_ROUTER
+from config import CONFIG
 
 
 def init_routers(app_: FastAPI) -> None:
@@ -55,3 +54,7 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
+
+@app.get("/health", include_in_schema=False)
+async def health():
+    return {"status": "ok"}

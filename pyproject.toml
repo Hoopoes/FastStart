@@ -1,15 +1,16 @@
+[project.urls]
+Repository = "https://github.com/Hoopoes/FastStart"
+
 [project]
 name = "faststart-main"
 version = "1.0.0"
 description = "Main file structure of fastAPI"
 license = "MIT"
-authors = [
-    {name = "umar-anzar", email = "omer.anzar2@gmail.com"}
-]
+authors = [{ name = "umar-anzar", email = "omer.anzar2@gmail.com" }]
 readme = "README.md"
 
 
-requires-python = ">=3.11,<3.12"
+requires-python = ">=3.11,<3.13"
 dependencies = [
     "fastapi[standard]>=0.136.1",
     "gunicorn>=25.3.0",
@@ -18,8 +19,6 @@ dependencies = [
     "uvicorn[standard]>=0.46.0",
 ]
 
-[project.urls]
-Repository = "https://github.com/Hoopoes/FastStart"
 
 [dependency-groups]
 dev = [
@@ -28,3 +27,9 @@ dev = [
     "pytest-asyncio>=1.4.0",
     "ruff>=0.15.12",
 ]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["."]

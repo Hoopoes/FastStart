@@ -1,10 +1,10 @@
-import os
 import logging
+import os
 from logging.config import dictConfig
 
-from config import CONFIG
 from app.utils.config_loader import LOG_CONFIG
 from app.utils.log_handler import LOG_DIRECTORY
+from config import CONFIG
 
 # Logging configuration
 log_config = {

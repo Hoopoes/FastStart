@@ -1,6 +1,7 @@
-import jwt
+from datetime import UTC, datetime, timedelta
 from typing import Literal
-from datetime import datetime, timedelta, timezone
+
+import jwt
 
 from config import CONFIG
 
@@ -12,7 +13,7 @@ def create_token(
 ) -> str:
     to_encode = data.copy()
 
-    expire = datetime.now(timezone.utc) + expires_delta
+    expire = datetime.now(UTC) + expires_delta
 
     to_encode.update(
         {

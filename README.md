@@ -67,25 +67,30 @@ uv run python main.py
 ```
 📦Project
  ┣ 📂app
+ ┃ ┣ 📂auth
  ┃ ┣ 📂errors
  ┃ ┣ 📂middlewares
  ┃ ┣ 📂models
  ┃ ┣ 📂routes
+ ┃ ┃ ┣ 🐍auth.py
+ ┃ ┃ ┣ 🐍route.py
  ┃ ┃ ┣ 📂v1
  ┃ ┃ ┃ ┣ 📂endpoints
  ┃ ┃ ┃ ┃ ┗ 🐍user.py
  ┃ ┃ ┃ ┗ 🐍v1_route.py
- ┃ ┃ ┗ 🐍route.py
  ┃ ┣ 📂schemas
  ┃ ┣ 📂services
  ┃ ┣ 📂utils
  ┃ ┗ 🐍server.py
  ┣ 📂docs
  ┣ 📂logs
+ ┣ 📂tests
  ┣ 🗝️.env
  ┣ 🗝️.env.example
  ┣ 📜.gitattributes
  ┣ 📜.gitignore
+ ┣ 🤖AGENTS.md
+ ┣ ⚙️logger.toml
  ┣ 🐍config.py
  ┣ 🐍main.py
  ┣ 🔒uv.lock
@@ -97,10 +102,12 @@ uv run python main.py
 - **Root Directory**: Configuration files and entry points.
   
   - **app**: Main application directory.
+    - **auth**: JWT and OAuth2-based authentication helpers, token creation/validation, and demo user credential verification.
     - **errors**: Custom error response definitions, including error documentation for swagger.
     - **middlewares**: Custom middleware for request/response processing and exception handling.
     - **models**: Database models & core application objects.
     - **routes**: API endpoints and route handlers.
+      - **auth.py** – Token issuance endpoint and authentication routes.
       - **v1** – Versioned API routes (e.g., v1). Additional versions like v2 or v3 can be created as needed for backward compatibility.
     - **schemas**: Data Transfer Objects (DTOs) & validation schemas (`pydantic`).
     - **services**: Business logic.
@@ -111,15 +118,39 @@ uv run python main.py
 
   - **logs**: Log files.
 
+  - **tests**: Async pytest suite covering authentication, user CRUD, and the admin-only authorization rules.
+
   - **.env**: Secret Environment configuration that is ignored by Git.
 
   - **.env.example**: Example environment configuration file that is not ignored by Git.
+
+  - **AGENTS.md**: Guide for AI coding agents — setup, structure, and conventions.
+
+  - **logger.toml**: Logging configuration read by `app/utils/config_loader.py` — level, output format (`json`/`logfmt`/`psv`), and the context fields added to every entry.
 
   - **config.py**: Project configurations, such as loading environment keys.
 
   - **main.py**: Application entry point.
 
   - **uv.lock, pyproject.toml**: Dependency management.
+
+## Authentication
+
+This starter includes a simple JWT-based authentication flow using FastAPI's OAuth2 password flow.
+
+### Demo Credentials
+
+- Email: `admin@example.com`
+- Password: `admin123`
+- Role: `admin`
+
+Other demo users: `member@example.com` / `member123` (member), `inactive@example.com` / `member1234` (member, inactive). Inactive users cannot log in.
+
+## 🧪 Tests
+
+```bash
+uv run pytest
+```
 
 ## 📂 Log Viewer (in the `log-viewer` branch)
 

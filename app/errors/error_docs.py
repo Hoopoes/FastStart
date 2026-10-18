@@ -1,7 +1,6 @@
 import app.errors.error as http_error
 from app.schemas.base import BaseResponseDto
 
-
 # Global response definitions
 GLOBAL_RESPONSES = {
     422: {

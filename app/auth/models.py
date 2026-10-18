@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import BaseModel
 
 
@@ -7,9 +9,9 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    username: str
-    password: str | None = None
+    email: str
 
 
-class User(BaseModel):
-    username: str
+class UserAuth(BaseModel):
+    email: str
+    role: Literal["admin", "member"]
